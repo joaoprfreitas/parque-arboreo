@@ -8,7 +8,7 @@ const router = express.Router();
  */
 router.get('/', (req, res, next) => {
     res.status(200).send({
-        title: "PetStore API",
+        title: "API Projeto Arborizas",
         version: '1.0.0'
     });
 });
