@@ -1,27 +1,13 @@
 'use strict'
 
 const express = require('express');
-const bodyPaser = require('body-parser');
-const mongoose = require('mongoose');
-
-// Arquivo com configurações do servidor
-const config = require('./config'); 
+const bodyParser = require('body-parser');
 
 const app = express();
 
-// Conecta ao banco
-mongoose.connect(config.connectionString)
-
-// Importa os models
-const Product = require('./models/product');
-const User = require('./models/user');
-const Order = require('./models/order');
-
 // Importa as rotas
 const index = require('./routes/index');
-const product = require('./routes/product');
-const order = require('./routes/order');
-const user = require('./routes/user');
+const usuario = require('./routes/usuario.routes');
 
 // Habilita no cors o acesso de qualquer origem
 app.use(function (req, res, next) {
@@ -32,13 +18,13 @@ app.use(function (req, res, next) {
 });
 
 // Permite que o body seja interpretado como json
-app.use(bodyPaser.json());
-app.use(bodyPaser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Carrega as rotas
 app.use('/', index);
-app.use('/product', product);
-app.use('/user', user);
-app.use('/order', order);
+app.use('/usuario', usuario);
 
 module.exports = app;
+
+
