@@ -8,6 +8,7 @@ const app = express();
 // Importa as rotas
 const index = require('./routes/index');
 const usuario = require('./routes/usuario.routes');
+const imagem = require('./routes/imagem.routes');
 
 // Habilita no cors o acesso de qualquer origem
 app.use(function (req, res, next) {
@@ -18,12 +19,15 @@ app.use(function (req, res, next) {
 });
 
 // Permite que o body seja interpretado como json
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json({ limit: '50mb'}));
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
+
+app.use('/upload', express.static('upload'));
 
 // Carrega as rotas
 app.use('/', index);
 app.use('/usuario', usuario);
+app.use('/arvore/imagem', imagem);
 
 module.exports = app;
 

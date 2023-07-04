@@ -27,11 +27,11 @@ exports.createUsuario = async (req, res) => {
                     res.status(404).send({
                         message: 'Erro ao inserir usuário no banco de dados'
                     })
-                } else {
-                    res.status(201).send({
-                        message: 'Usuário inserido com sucesso'
-                    });
+                    return;
                 }
+                res.status(201).send({
+                    message: 'Usuário inserido com sucesso'
+                });
             }
         )
     });
