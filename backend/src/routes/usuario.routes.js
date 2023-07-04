@@ -19,12 +19,14 @@ router.put('/:email', usuarioController.updateUsuarioInfos);
 router.put('/admin/:email', usuarioController.updateCargoUsuario);
 
 // Excluir um usuario
-// router.delete('/:email', usuarioController.deleteUsuario);
+router.delete('/:email', usuarioController.deleteUsuario);
 
 // Consultar um usuario pelo email
-// router.get('/:email', usuarioController.getUsuarioByEmail);
+router.get('/:email', usuarioController.getUsuarioByEmail);
 
 // Obter todos usuários
 router.get('/', usuarioController.getAllUsuarios);
+
+// TODO: autenticação de usuário
 
 module.exports = router;

@@ -40,21 +40,28 @@ exports.createUsuario = async (req, res) => {
 };
 
 exports.updateUsuarioInfos = async (req, res) => {
-    const email = req.params.email;
-    const { novoEmail, nome, cpf, nusp } = req.body;
+    const emailAntigo = req.params.email;
+    const { email, nome, cpf, nusp } = req.body;
 
     db.query(
         ` UPDATE usuario
         SET email = $1, nome = $2, cpf = $3, nusp = $4
         WHERE email = $5
         `,
-        [novoEmail, nome, cpf, nusp, email],
-        (err, _) => {
+        [email, nome, cpf, nusp, emailAntigo],
+        (err, response) => {
             if (err) {
                 res.status(400).send({
                     message: 'Erro ao atualizar informações do usuário'
                 })
             } else {
+                if (response.rowCount == 0) {
+                    res.status(404).send({
+                        message: 'Usuário não encontrado'
+                    })
+                    return;
+                }
+
                 res.status(200).send({
                     message: 'Informações do usuário atualizadas com sucesso'
                 });
@@ -72,25 +79,26 @@ exports.updateUsuarioSenha = async (req, res) => {
             res.status(400).send({
                 message: 'Erro ao encriptar a senha'
             });
-        } else {
-            db.query(
-                `UPDATE usuario
-                SET senha = $1
-                WHERE email = $2`,
-                [hash, email],
-                (err, _) => {
-                    if (err) {
-                        res.status(400).send({
-                            message: 'Erro ao atualizar senha do usuário'
-                        });
-                    } else {
-                        res.status(200).send({
-                            message: 'Senha do usuário atualizada com sucesso'
-                        });
-                    }
-                }
-            );
+            return;
         }
+        db.query(
+            `UPDATE usuario
+            SET senha = $1
+            WHERE email = $2`,
+            [hash, email],
+            (err, _) => {
+                if (err) {
+                    res.status(400).send({
+                        message: 'Erro ao atualizar senha do usuário'
+                    });
+                    return;
+                }
+
+                res.status(200).send({
+                    message: 'Senha do usuário atualizada com sucesso'
+                });
+            }
+        );  
     });
 };
 
@@ -108,11 +116,11 @@ exports.updateCargoUsuario = async (req, res) => {
                 res.status(400).send({
                     message: 'Erro ao atualizar cargo do usuário'
                 });
-            } else {
-                res.status(200).send({
-                    message: 'Cargo do usuário atualizado com sucesso'
-                });
+                return;
             }
+            res.status(200).send({
+                message: 'Cargo do usuário atualizado com sucesso'
+            });
         }
     );
 };
@@ -128,11 +136,19 @@ exports.deleteUsuario = async (req, res) => {
                 res.status(404).send({
                     message: 'Usuário não encontrado'
                 })
-            } else {
-                res.status(200).send({
-                    message: 'Usuário removido com sucesso'
-                });
+                return;
             }
+
+            if (results.rowCount == 0) {
+                res.status(404).send({
+                    message: 'Usuário não encontrado'
+                })
+                return;
+            }
+
+            res.status(200).send({
+                message: 'Usuário removido com sucesso'
+            });
         }
     )
 };
@@ -149,6 +165,12 @@ exports.getUsuarioByEmail = async (req, res) => {
                     message: 'Usuário não encontrado'
                 })
             } else {
+                if (results.rows.length == 0) {
+                    res.status(404).send({
+                        message: 'Usuário não encontrado'
+                    })
+                    return;
+                }
                 res.status(200).send(results.rows[0]);
             }
         }
