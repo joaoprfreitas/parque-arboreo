@@ -14,28 +14,26 @@ exports.createUsuario = async (req, res) => {
             res.status(400).send({
                 message: 'Erro ao encriptar a senha'
             });
-        } else {
-            db.query(
-                ` INSERT INTO usuario
-                (email, senha, nome, cpf, nusp, permissao)
-                VALUES ($1, $2, $3, $4, $5, $6)
-                `,
-                [email, hash, nome, cpf, nusp, defaultPermissao],
-                (err, _) => {
-                    if (err) {
-                        res.status(404).send({
-                            message: 'Erro ao inserir usuário no banco de dados'
-                        })
-                    } else {
-                        res.status(201).send({
-                            message: 'Usuário inserido com sucesso'
-                        });
-                    }
-                }
-
-            )
-
+            return;
         }
+        db.query(
+            ` INSERT INTO usuario
+            (email, senha, nome, cpf, nusp, permissao)
+            VALUES ($1, $2, $3, $4, $5, $6)
+            `,
+            [email, hash, nome, cpf, nusp, defaultPermissao],
+            (err, _) => {
+                if (err) {
+                    res.status(404).send({
+                        message: 'Erro ao inserir usuário no banco de dados'
+                    })
+                } else {
+                    res.status(201).send({
+                        message: 'Usuário inserido com sucesso'
+                    });
+                }
+            }
+        )
     });
 };
 
@@ -54,23 +52,23 @@ exports.updateUsuarioInfos = async (req, res) => {
                 res.status(400).send({
                     message: 'Erro ao atualizar informações do usuário'
                 })
-            } else {
-                if (response.rowCount == 0) {
-                    res.status(404).send({
-                        message: 'Usuário não encontrado'
-                    })
-                    return;
-                }
-
-                res.status(200).send({
-                    message: 'Informações do usuário atualizadas com sucesso'
-                });
+                return;
             }
+            if (response.rowCount == 0) {
+                res.status(404).send({
+                    message: 'Usuário não encontrado'
+                })
+                return;
+            }
+
+            res.status(200).send({
+                message: 'Informações do usuário atualizadas com sucesso'
+            });
         }
     );
 };
 
-exports.updateUsuarioSenha = async (req, res) => {
+exports.updateSenhaUsuario = async (req, res) => {
     const email = req.params.email;
     const { senha } = req.body;
 
@@ -164,15 +162,16 @@ exports.getUsuarioByEmail = async (req, res) => {
                 res.status(404).send({
                     message: 'Usuário não encontrado'
                 })
-            } else {
-                if (results.rows.length == 0) {
-                    res.status(404).send({
-                        message: 'Usuário não encontrado'
-                    })
-                    return;
-                }
-                res.status(200).send(results.rows[0]);
+                return;
             }
+            if (results.rows.length == 0) {
+                res.status(404).send({
+                    message: 'Usuário não encontrado'
+                })
+                return;
+            }
+            
+            res.status(200).send(results.rows[0]);
         }
     )
 };

@@ -13,7 +13,7 @@ router.post('/', usuarioController.createUsuario);
 router.put('/:email', usuarioController.updateUsuarioInfos);
 
 // Atualizar senha de um usuario
-// router.put('/senha/:email', usuarioController.updateSenhaUsuario);
+router.put('/senha/:email', usuarioController.updateSenhaUsuario);
 
 // Atualizar cargo de um usuario
 router.put('/admin/:email', usuarioController.updateCargoUsuario);
