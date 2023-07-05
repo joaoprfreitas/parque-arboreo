@@ -34,12 +34,19 @@ exports.createImagem = async (req, res) => {
 
 exports.deleteImagem = async (req, res) => {
     try {
-        const { idImagem } = req.body;
+        const { id } = req.params;
 
-        await db.query(
+        const response = await db.query(
             `DELETE FROM imagem WHERE id = $1`,
-            [idImagem]
+            [id]
         );
+
+        if (response.rowCount == 0) {
+            res.status(404).send({
+                message: 'Imagem não encontrada'
+            });
+            return;
+        }
 
         res.status(200).send({
             message: 'Imagem deletada com sucesso'
@@ -54,11 +61,11 @@ exports.deleteImagem = async (req, res) => {
 
 exports.getImagem = async (req, res) => {
     try {
-        const { idImagem } = req.body;
+        const { id } = req.params;
 
         const { rows } = await db.query(
             `SELECT * FROM imagem WHERE id = $1`,
-            [idImagem]
+            [id]
         );
 
         const imagem = rows[0];
