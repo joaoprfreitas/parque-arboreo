@@ -1,10 +1,23 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './TreeInfo.module.css';
-import { useNavigate } from 'react-router-dom';
+import { useSearchParams, useNavigate } from 'react-router-dom';
+
+import useAxios from "../hooks/useAxios";
+import axios from "../api/axiosInstance";
 
 const TreeInfo = () => {
-    
+    const [searchparams] = useSearchParams();
     const navigate = useNavigate();
+    let idRisco = searchparams.get("id");    
+
+    const [risco, error, loading] = useAxios({
+        axiosInstance: axios,
+        method: 'GET',
+        url: 'http://localhost:3500/risco/' + idRisco,
+        requestConfig: {}
+    })
+    
+    console.log(risco.descricao);
 
     return(
         <div> 
@@ -12,7 +25,7 @@ const TreeInfo = () => {
                 <h1>Confira informações da árvore:</h1>
                 <div className={styles.infoBox}>
                     <div className={styles.infoInput}>
-                        
+                        <h1>Risco: {risco.descricao}</h1>
                     </div>
                 </div>
             </div>
