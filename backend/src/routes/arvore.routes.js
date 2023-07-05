@@ -5,6 +5,7 @@ const router = express.Router();
 const arvoreController = require('../controllers/arvore.controller');
 const arvoreRiscoController = require('../controllers/arvore_risco.controller');
 const arvoreImagemController = require('../controllers/arvore_imagem.controller');
+const tagController = require('../controllers/tags.controller');
 
 // <------Link Árvore risco------>
 
@@ -21,6 +22,20 @@ router.post('/imagem', arvoreImagemController.linkArvoreImagem);
 
 // Desvincular uma árvore de um risco
 router.delete('/imagem', arvoreImagemController.unlinkArvoreImagem);
+
+// <---------Tag árvore--------->
+
+// Adicionar uma tag a uma árvore
+router.post('/tag', tagController.createTagArvore);
+
+// Remover uma tag de uma árvore
+router.delete('/tag', tagController.deleteTagArvore);
+
+// Buscar todas as tags de uma árvore
+router.get('/tag/:arvore', tagController.getTagsArvore);
+
+// Buscar árvores por tags
+router.get('/tag', tagController.getArvoresByTags);
 
 // <-----------Árvore----------->
 

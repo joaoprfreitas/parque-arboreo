@@ -29,3 +29,8 @@
 
 `POST /arvore/imagem` - Adiciona uma imagem cadastrada a uma árvore existente\
 `DELETE /arvore/imagem` - Remove uma imagem cadastrada de uma árvore existente\
+
+`POST /arvore/tag` - Adicionar uma tag a uma árvore\
+`DELETE /arvore/tag` - Remover uma tag de uma árvore\
+`GET /arvore/tag/:arvore` - Buscar todas as tags de uma árvore\
+`GET /arvore/tag` - Buscar árvores por tags\

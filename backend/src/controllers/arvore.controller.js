@@ -35,28 +35,6 @@ exports.createArvore = async (req, res) => {
     }
 }
 
-// ## TODO: FAZER JOIN COM AS OUTRAS TABELAS
-exports.getArvoreByCodigo = async (req, res) => {
-    const codigo = parseInt(req.params.codigo);
-
-    try {
-        const response = await db.query(
-            'SELECT * FROM arvore WHERE codigo = $1',
-            [codigo]
-        )
-
-        if (response.rowCount == 0) {
-            throw new Error();
-        }
-
-        res.status(200).send(response.rows[0]);
-    } catch (error) {
-        res.status(500).send({
-            message: 'Árvore não encontrada'
-        });
-    }
-}
-
 exports.deleteArvore = async (req, res) => {
     const codigo = parseInt(req.params.codigo);
 
@@ -73,6 +51,28 @@ exports.deleteArvore = async (req, res) => {
         res.status(200).send({
             message: 'Árvore removida com sucesso'
         });
+    } catch (error) {
+        res.status(500).send({
+            message: 'Árvore não encontrada'
+        });
+    }
+}
+
+// ## TODO: FAZER JOIN COM AS OUTRAS TABELAS
+exports.getArvoreByCodigo = async (req, res) => {
+    const codigo = parseInt(req.params.codigo);
+
+    try {
+        const response = await db.query(
+            'SELECT * FROM arvore WHERE codigo = $1',
+            [codigo]
+        )
+
+        if (response.rowCount == 0) {
+            throw new Error();
+        }
+
+        res.status(200).send(response.rows[0]);
     } catch (error) {
         res.status(500).send({
             message: 'Árvore não encontrada'
