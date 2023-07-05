@@ -1,8 +1,6 @@
 'use strict'
 
-const e = require('express');
 const db = require('../config/database');
-
 
 exports.createDocumento = async (req, res) => {
     const { nome, dados } = req.body;
@@ -27,8 +25,7 @@ exports.createDocumento = async (req, res) => {
     } catch (err) {
         res.status(500).send({
             message: 'Erro ao criar documento'
-        })
-        return;
+        });
     }
 }
 
@@ -46,17 +43,14 @@ exports.getDocumentoById = async (req, res) => {
         }
 
         res.status(200).send(response.rows);
-    }
-    catch (err) {
+    } catch (err) {
         res.status(404).send({
             message: 'Documento não encontrado'
         })
-        return;
     }  
 }
 
 exports.getAllDocumentos = async (_, res) => {
-
     try {        
         const response = await db.query('SELECT * FROM documento ORDER BY id DESC');
     
@@ -65,7 +59,6 @@ exports.getAllDocumentos = async (_, res) => {
         res.status(500).send({
             message: 'Erro ao buscar documentos'
         })
-        return;
     }
 
 }
@@ -90,8 +83,7 @@ exports.updateDocumento = async (req, res) => {
     } catch (err) {
         res.status(500).send({
             message: 'Erro ao atualizar documento'
-        })
-        return;
+        });
     }
 }
 
@@ -114,7 +106,6 @@ exports.deleteDocumento = async (req, res) => {
     } catch (err) {
         res.status(500).send({
             message: 'Erro ao deletar documento'
-        })
-        return;
+        });
     }
 }

@@ -21,7 +21,7 @@ create table report (
     descricao varchar(300) not null,
     data date not null,
     usuario varchar(255), -- not null?
-    situacao smallint, -- 0: aberto, 1: em andamento, 2: fechado
+    situacao smallint default 0, -- 0: aberto, 1: em andamento, 2: fechado
 
     primary key (numero),
     foreign key (usuario) references usuario(email) on delete set null,

@@ -5,23 +5,25 @@ const db = require('../config/database');
 exports.createReport = async (req, res) => {
     const {descricao, data, usuario, situacao} = req.body;
 
-    db.query(
-        `INSERT INTO report (descricao, data, usuario, situacao)
-        VALUES ($1, TO_DATE($2, 'DD/MM/YYYY'), $3, $4)`,
-        [descricao, data, usuario, situacao],
-        (err, _) => {
-            if (err) {
-                res.status(404).send({
-                    message: 'Erro ao criar report'
-                })
-                return;
-            }
-        }
-    );
+    try {
+        const response = await db.query(
+            `INSERT INTO report (descricao, data, usuario, situacao)
+            VALUES ($1, TO_DATE($2, 'DD/MM/YYYY'), $3, $4)`,
+            [descricao, data, usuario, situacao],
+        );
 
-    res.status(201).send({ 
-        message: 'Report criado com sucesso'
-    });
+        if (response.rowCount == 0) {
+            throw new Error();
+        }
+
+        res.status(201).send({
+            message: 'Report criado com sucesso'
+        });
+    } catch (error) {
+        res.status(400).send({
+            message: 'Erro ao criar report'
+        });
+    }
 }
 
 exports.getReportByNumero = async (req, res) => {
@@ -55,7 +57,10 @@ exports.getAllReports = async (_, res) => {
         );
 
         if (response.rowCount == 0) {
-            throw new Error();
+            res.status(404).send({
+                message: 'Nenhum report encontrado'
+            });
+            return;
         }
     
         res.status(200).send(response.rows);

@@ -29,6 +29,13 @@ exports.getAllRiscos = async (req, res) => {
             `SELECT * FROM risco`
         );
 
+        if (response.rowCount == 0) {
+            res.status(404).send({
+                message: 'Nenhum risco encontrado'
+            });
+            return;
+        }
+
         res.status(200).send(response.rows);
 
     } catch (error) {
