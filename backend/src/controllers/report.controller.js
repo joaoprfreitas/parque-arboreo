@@ -3,13 +3,13 @@
 const db = require('../config/database');
 
 exports.createReport = async (req, res) => {
-    const {descricao, data, usuario, situacao} = req.body;
+    const {descricao, data, usuario} = req.body;
 
     try {
         const response = await db.query(
             `INSERT INTO report (descricao, data, usuario, situacao)
-            VALUES ($1, TO_DATE($2, 'DD/MM/YYYY'), $3, $4)`,
-            [descricao, data, usuario, situacao],
+            VALUES ($1, TO_DATE($2, 'DD/MM/YYYY'), $3, 0)`,
+            [descricao, data, usuario],
         );
 
         if (response.rowCount == 0) {
