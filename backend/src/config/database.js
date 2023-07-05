@@ -7,10 +7,6 @@ const pool = new Pool({
     ssl: true,
 });
 
-pool.on('connect', () => {
-    console.log('[DATABASE] Conexão para request realizada!');
-});
-
 module.exports = {
     query: (text, params, callback) => {
         return pool.query(text, params, callback);

@@ -4,6 +4,7 @@ const express = require('express');
 const router = express.Router();
 const arvoreController = require('../controllers/arvore.controller');
 const arvoreRiscoController = require('../controllers/arvore_risco.controller');
+const arvoreImagemController = require('../controllers/arvore_imagem.controller');
 
 // <------Link Árvore risco------>
 
@@ -12,6 +13,14 @@ router.post('/risco', arvoreRiscoController.linkArvoreRisco);
 
 // Desvincular uma árvore de um risco
 router.delete('/risco', arvoreRiscoController.unlinkArvoreRisco);
+
+// <------Link Árvore imagem------>
+
+// Vincular uma árvore a um risco
+router.post('/imagem', arvoreImagemController.linkArvoreImagem);
+
+// Desvincular uma árvore de um risco
+router.delete('/imagem', arvoreImagemController.unlinkArvoreImagem);
 
 // <-----------Árvore----------->
 

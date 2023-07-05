@@ -25,3 +25,6 @@
 
 `POST /arvore/risco` - Adiciona um risco cadastrado a uma árvore existente\
 `DELETE /arvore/risco` - Remove um risco cadastrado de uma árvore existente\
+
+`POST /arvore/imagem` - Adiciona uma imagem cadastrada a uma árvore existente\
+`DELETE /arvore/imagem` - Remove uma imagem cadastrada de uma árvore existente\

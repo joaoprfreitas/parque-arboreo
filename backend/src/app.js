@@ -30,9 +30,11 @@ app.use('/upload', express.static('upload'));
 
 // Carrega as rotas
 app.use('/', index);
+
 app.use('/usuario', usuario);
 app.use('/arvore', arvore);
-app.use('/arvore/imagem', imagem);
+
+app.use('/imagem', imagem);
 app.use('/report', report);
 app.use('/risco', risco);
 app.use('/documento', documento);
