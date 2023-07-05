@@ -1,0 +1,44 @@
+.container{
+    max-width: 1300px;
+    max-height: 1000px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.image img{
+    width: 300px;
+    height: 300px;
+    padding-bottom: 30px;
+    padding-top: 10px;
+}
+
+.search{
+    display: flex;
+    width:500px;
+    height:36px;
+}
+
+.search input{
+    background-color: lightgray;
+    border:solid 2px darkgray;
+    border-radius: 7px 0px 0px 7px;
+    padding-left:5px;
+    font-size:18px;
+    height:36px;
+    width:400px;
+} 
+  
+.search button{
+    border:none;
+    height:42px;
+    border-radius:0 7px 7px 0;
+    width:100px;
+    font-weight:bold;
+    background: darkgray;
+}
+
+.search button:hover{
+    background: gray;
+}  
+  
