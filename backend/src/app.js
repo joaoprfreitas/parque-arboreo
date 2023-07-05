@@ -9,6 +9,8 @@ const app = express();
 const index = require('./routes/index');
 const usuario = require('./routes/usuario.routes');
 const imagem = require('./routes/imagem.routes');
+const report = require('./routes/report.routes');
+const risco = require('./routes/risco.routes');
 
 // Habilita no cors o acesso de qualquer origem
 app.use(function (req, res, next) {
@@ -28,6 +30,8 @@ app.use('/upload', express.static('upload'));
 app.use('/', index);
 app.use('/usuario', usuario);
 app.use('/arvore/imagem', imagem);
+app.use('/report', report);
+app.use('/risco', risco);
 
 module.exports = app;
 
