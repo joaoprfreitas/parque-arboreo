@@ -8,6 +8,7 @@ const app = express();
 // Importa as rotas
 const index = require('./routes/index');
 const usuario = require('./routes/usuario.routes');
+const arvore = require('./routes/arvore.routes');
 const imagem = require('./routes/imagem.routes');
 const report = require('./routes/report.routes');
 const risco = require('./routes/risco.routes');
@@ -30,6 +31,7 @@ app.use('/upload', express.static('upload'));
 // Carrega as rotas
 app.use('/', index);
 app.use('/usuario', usuario);
+app.use('/arvore', arvore);
 app.use('/arvore/imagem', imagem);
 app.use('/report', report);
 app.use('/risco', risco);

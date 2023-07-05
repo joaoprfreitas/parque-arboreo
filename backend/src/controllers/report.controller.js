@@ -41,13 +41,40 @@ exports.getReportByNumero = async (req, res) => {
             throw new Error();
         }
 
-        res.status(200).send(response);
+        res.status(200).send(response.rows[0]);
     } catch (error) {
         res.status(404).send({
             message: 'Report não encontrado'
         });
     }
 }
+
+exports.updateSituacaoReport = async (req, res) => {
+    try {
+        const numero = req.params.numero;
+        const situacao = req.body.situacao;
+
+        const response = await db.query(
+            `UPDATE report SET situacao = $1 WHERE numero = $2`,
+            [situacao, numero]
+        );
+
+        if (response.rowCount == 0) {
+            res.status(404).send({
+                message: 'Report não encontrado'
+            });
+            return;
+        }
+
+        res.status(200).send({
+            message: 'Report atualizado com sucesso'
+        });
+    } catch (error) {
+        res.status(500).send({
+            message: 'Erro ao atualizar report'
+        });
+    }
+};
 
 exports.getAllReports = async (_, res) => {
     try {
@@ -57,10 +84,7 @@ exports.getAllReports = async (_, res) => {
         );
 
         if (response.rowCount == 0) {
-            res.status(404).send({
-                message: 'Nenhum report encontrado'
-            });
-            return;
+            throw new Error();
         }
     
         res.status(200).send(response.rows);

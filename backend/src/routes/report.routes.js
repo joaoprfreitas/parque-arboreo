@@ -16,4 +16,7 @@ router.get('/:numero', reportController.getReportByNumero);
 // Deletar report específico (pelo numero)
 router.delete('/:numero', reportController.deleteReport);
 
+// Atualizar situação de um report específico (pelo numero)
+router.put('/:numero', reportController.updateSituacaoReport);
+
 module.exports = router;

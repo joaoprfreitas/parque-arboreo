@@ -1,61 +1,92 @@
-// 'use strict';
+'use strict';
 
-// const db = require('../config/database');
+const db = require('../config/database');
 
-// // Insere um árvore nova no banco de dados
-// exports.createArvore = async (req, res) => {
-//     const {
-//         latitude, longitude, especie, familia, nome_popular,
-//         origem, dap, dc, altura_primeira_ramificacao, altura,
-//         nome_imagem, imagem
-//     } = req.body;
+// Insere um árvore nova no banco de dados
+exports.createArvore = async (req, res) => {
+    const {
+        latitude, longitude, especie, familia, nome_popular,
+        origem, dap, dc, altura_primeira_ramificacao, altura
+    } = req.body;
 
-//     let id_arvore = 0;
-    
-//     db.query(
-//         `INSERT INTO arvore (latitude, longitude, especie, familia, nome_popular,
-//             origem, dap, dc, altura_primeira_ramificacao, altura)
-//         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10);
-//         `,
-//         [latitude, longitude, especie, familia, nome_popular,
-//             origem, dap, dc, altura_primeira_ramificacao, altura],
-//         (error, results) => {
-//             if (error) { // Erro ao adicionar árvore
-//                 res.status(400).send({
-//                     message: 'Erro ao adicionar árvore!',
-//                     body: { error }
-//                 });
-//             } else { // Arvore adicionada com sucesso
-//                 id_arvore = results.rows[0];
+    try {
+        const response = await db.query(
+            `INSERT INTO arvore (latitude, longitude, especie, familia, nome_popular,
+                origem, dap, dc, altura_primeira_ramificacao, altura)
+            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
+            RETURNING codigo`,
+            [latitude, longitude, especie, familia, nome_popular,
+                origem, dap, dc, altura_primeira_ramificacao, altura]
+        );
 
-//                 res.status(201).send({
-//                     message: 'Arvore adicionada com sucesso!',
-//                     body: { 
-//                         arvore: {
-//                             id_arvore, latitude, longitude, especie, familia, nome_popular,
-//                             origem, dap, dc, altura_primeira_ramificacao, altura
-//                         }
-//                     },
-//                 });
-//             }
-//         }
-//     );
+        if (response.rowCount == 0) {
+            throw new Error();
+        }
 
-//     let id_imagem = 0;
+        res.status(201).send({
+            codigo: response.rows[0].codigo,
+            message: 'Árvore inserida com sucesso'
+        });
 
-//     db.query(
-//         `INSERT INTO imagem (nome_imagem, imagem)
-//         VALUES ($1, $2);`,
-//         [nome_imagem, imagem]
-//     );
-// }
+    } catch (error) {
+        res.status(500).send({
+            message: 'Ocorreu um erro ao inserir a árvore'
+        });
+    }
+}
 
-// exports.getArvoreByCodigo = async (req, res) => {
-//     const codigo = parseInt(req.params.codigo);
-//     const response = await db.query(
-//         'SELECT * FROM arvore WHERE codigo = $1',
-//         [codigo]
-//     )
+// ## TODO: FAZER JOIN COM AS OUTRAS TABELAS
+exports.getArvoreByCodigo = async (req, res) => {
+    const codigo = parseInt(req.params.codigo);
 
-//     res.status(200).send(response.rows);
-// }
+    try {
+        const response = await db.query(
+            'SELECT * FROM arvore WHERE codigo = $1',
+            [codigo]
+        )
+
+        if (response.rowCount == 0) {
+            throw new Error();
+        }
+
+        res.status(200).send(response.rows[0]);
+    } catch (error) {
+        res.status(500).send({
+            message: 'Árvore não encontrada'
+        });
+    }
+}
+
+exports.deleteArvore = async (req, res) => {
+    const codigo = parseInt(req.params.codigo);
+
+    try {
+        const response = await db.query(
+            'DELETE FROM arvore WHERE codigo = $1',
+            [codigo]
+        );
+
+        if (response.rowCount == 0) {
+            throw new Error();
+        }
+
+        res.status(200).send({
+            message: 'Árvore removida com sucesso'
+        });
+    } catch (error) {
+        res.status(500).send({
+            message: 'Árvore não encontrada'
+        });
+    }
+}
+
+// TODO: ajustar informações e fazer join?
+exports.updateArvore = async (req, res) => {
+    const codigo = parseInt(req.params.codigo);
+
+    try {
+
+    } catch (error) {
+
+    }
+};
