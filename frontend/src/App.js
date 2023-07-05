@@ -13,6 +13,7 @@ import Home from './pages/Home';
 import ReportPage from './pages/Report';
 import LoginPage from './pages/Login';
 import RegisterPage from './pages/Register';
+import TreeInfo from './pages/TreeInfo';
 
 const App = () => {
     return ( 
@@ -23,6 +24,7 @@ const App = () => {
                 <Route path='Report' element={<ReportPage />} />
                 <Route path='Login' element={<LoginPage />} />
                 <Route path='Register' element={<RegisterPage />} />
+                <Route path='TreeInfo' element={<TreeInfo />} />
             </Routes>
         </div>
     );

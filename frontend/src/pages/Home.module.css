@@ -20,7 +20,7 @@
 }
 
 .search input{
-    background-color: lightgray;
+    background-color: white;
     border:solid 2px darkgray;
     border-radius: 7px 0px 0px 7px;
     padding-left:5px;
@@ -28,6 +28,10 @@
     height:36px;
     width:400px;
 } 
+
+.search input:focus{
+    outline: none;
+}
   
 .search button{
     border:none;
