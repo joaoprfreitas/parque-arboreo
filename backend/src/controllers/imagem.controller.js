@@ -80,3 +80,25 @@ exports.getImagem = async (req, res) => {
         });
     }
 };
+
+exports.getImagens = async (_, res) => {
+    try {
+        const response = await db.query(
+            `SELECT id, nome FROM imagem`
+        );
+
+        if (response.rowCount == 0) {
+            res.status(404).send({
+                message: 'Nenhuma imagem encontrada'
+            });
+            return;
+        }
+
+        res.status(200).send(response.rows);
+
+    } catch (error) {
+        res.status(500).send({
+            message: 'Ocorreu um erro ao buscar as imagens'
+        });
+    }
+}
