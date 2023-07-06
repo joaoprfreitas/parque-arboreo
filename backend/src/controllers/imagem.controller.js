@@ -4,25 +4,21 @@ const db = require('../config/database');
 
 exports.createImagem = async (req, res) => {
     try {
-        const { arvore, nomeImagem, imagem } = req.body;
+        const {nomeImagem, imagem } = req.body;
 
-        const { rows } = await db.query(
+        const response = await db.query(
             `INSERT INTO imagem (nome, dados) VALUES ($1, $2)
             RETURNING id`,
             [nomeImagem, imagem]
         );
 
-        const idImagem = rows[0].id;
-
-        await db.query(
-            `INSERT INTO arvore_imagem (arvore, imagem) VALUES ($1, $2)`,
-            [arvore, idImagem]
-        );
+        if (response.rowCount == 0) {
+            throw new Error();
+        }
 
         res.status(201).send({
             message: 'Imagem inserida com sucesso'
         });
-
     } catch (error) {
         console.error('createImagem', error);
         res.status(500).send({
