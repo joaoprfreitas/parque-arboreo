@@ -58,13 +58,16 @@ exports.deleteArvore = async (req, res) => {
     }
 }
 
-// ## TODO: FAZER JOIN COM AS OUTRAS TABELAS
+
 exports.getArvoreByCodigo = async (req, res) => {
     const codigo = parseInt(req.params.codigo);
 
     try {
         const response = await db.query(
-            'SELECT * FROM arvore WHERE codigo = $1',
+            `SELECT a.codigo, a.latitude, a.longitude, a.especie, a.familia, a.nome_popular,
+                a.origem, a.dap, a.dc, a.altura_primeira_ramificacao, a.altura
+            FROM arvore a
+            WHERE codigo = $1`,
             [codigo]
         )
 
@@ -80,13 +83,55 @@ exports.getArvoreByCodigo = async (req, res) => {
     }
 }
 
-// TODO: ajustar informações e fazer join?
+exports.getArvores = async (req, res) => {
+    try {
+        const response = await db.query(
+            `SELECT codigo FROM arvore`
+        );
+        
+        if (response.rowCount == 0) {
+            res.status(404).send({
+                message: 'Nenhuma árvore encontrada'
+            });
+            return;
+        }
+
+        res.status(200).send(response.rows);
+    } catch (error) {
+        res.status(500).send({
+            message: 'Ocorreu um erro ao buscar as árvores'
+        });
+    }
+};
+
 exports.updateArvore = async (req, res) => {
     const codigo = parseInt(req.params.codigo);
+    const {latitude, longitude, especie, familia, nome_popular, origem,
+            dap, dc, altura_primeira_ramificacao, altura} = req.body;
 
     try {
+        const response = await db.query(
+            `UPDATE arvore SET latitude = $1, longitude = $2, especie = $3, familia = $4,
+                nome_popular = $5, origem = $6, dap = $7, dc = $8,
+                altura_primeira_ramificacao = $9, altura = $10
+                WHERE codigo = $11`,
+            [latitude, longitude, especie, familia, nome_popular, origem,
+                dap, dc, altura_primeira_ramificacao, altura, codigo]
+        );
 
+        if (response.rowCount == 0) {
+            res.status(404).send({
+                message: 'Árvore não encontrada'
+            })
+            return;
+        }
+
+        res.status(200).send({
+            message: 'Árvore atualizada com sucesso'
+        });
     } catch (error) {
-
+        res.status(500).send({
+            message: 'Ocorreu um erro ao atualizar a árvore'
+        });
     }
 };
