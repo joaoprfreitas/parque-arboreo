@@ -16,6 +16,13 @@ const HomePage = () => {
     const [searchShow, setSearchShow] = useState(false); 
     const [error, setError] = useState('')
 
+    // const [images, errorImages, loading] = useAxios({
+    //     axiosInstance: axios,
+    //     method: 'GET',
+    //     url: 'http://localhost:3500/images/' + idRisco,
+    //     requestConfig: {}
+    // })
+
     // dados temporarios ate requisicao estar pronta
     const arvoreData = [
         {
