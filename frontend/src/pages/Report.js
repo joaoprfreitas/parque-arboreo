@@ -8,7 +8,7 @@ import axios from "../api/axiosInstance";
 
 const ReportPage = () => {
     const navigate = useNavigate(); 
-    const [codigo, setCodigo] = useState('');
+    const [email, setEmail] = useState('');
     const [localizacao, setLocalizacao] = useState('');
     const [descricao, setDescricao] = useState('');
     const [error, setError] = useState('');
@@ -29,7 +29,7 @@ const ReportPage = () => {
     }
 
     const send = () => {
-        register(descricao, localizacao, 'cleber@usp.br')
+        register(descricao, localizacao, email)
     }
     return(
         <div> 
@@ -38,9 +38,9 @@ const ReportPage = () => {
                 <div className={styles.reportBox}>
                     <div className={styles.reportInput1}>
                         <form>
-                            <label>Código</label>
-                            <input type="text" placeholder="Ex.: 1234567890"
-                            className={styles.reportField} onChange={(e) => [setCodigo(e.target.value), setError('')]}
+                            <label>Email</label>
+                            <input type="text" placeholder="Ex.: fulano@email.com"
+                            className={styles.reportField} onChange={(e) => [setEmail(e.target.value), setError('')]}
                             required /> <br/>
 
                             <label>Localização</label>

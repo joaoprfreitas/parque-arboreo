@@ -1,0 +1,11 @@
+.container{
+    border: solid 2px darkgray;
+    margin-bottom: 1px;
+    margin-top: 2px;
+    width: 492px;
+    height: 72px;
+}
+
+.info{
+    display: flex;
+}

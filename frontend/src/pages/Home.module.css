@@ -34,7 +34,7 @@
 }
   
 .search button{
-    border:none;
+    border:solid 2px darkgray;
     height:42px;
     border-radius:0 7px 7px 0;
     width:100px;
