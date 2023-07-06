@@ -1,13 +1,36 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styles from './Register.module.css';
 import userIcon from '../images/login.png';
 import { useNavigate } from 'react-router-dom';
 
+import useAxios from "../hooks/useAxios";
+import axios from "../api/axiosInstance";
+
 const RegisterPage = () => {
     
     const navigate = useNavigate();
-    const register = () => {
-        navigate('/Login');
+    const [email, setEmail] = useState('');
+    const [senha, setSenha] = useState('');
+    const [nome, setNome] = useState('');
+    const [cpf, setCPF] = useState('');
+    const [nusp, setNusp] = useState('');
+    const [error, setError] = useState('');
+
+    async function register(userEmail, userPassword, userName, userCPF, userNusp) {
+        try {
+            const res = await axios.post('http://localhost:3500/usuaruio/', {
+                email: userEmail,
+                senha: userPassword,
+                nome: userName,
+                cpf: userCPF,
+                nusp: userNusp,
+                permissao: 0
+            })
+
+            navigate('/Login');
+        } catch(e) {
+            setError(e.response.data[0].message);
+        }
     }
 
     return(
@@ -19,12 +42,19 @@ const RegisterPage = () => {
                     <div className={styles.loginInput}>
                         <form>
                             <input id="nome" type="text" placeholder="Nome Completo"
-                            className={styles.loginField} required /> <br/>
+                            className={styles.loginField} onChange={(e) => [setNome(e.target.value), setError('')]} required /> <br/>
+
                             <input id="email" type="email" placeholder="Email"
-                            className={styles.loginField} required /> <br/>
+                            className={styles.loginField} onChange={(e) => [setEmail(e.target.value), setError('')]} required /> <br/>
 
                             <input id="password" type="password" placeholder="Senha"
-                            className={styles.loginField} required  /> <br/>
+                            className={styles.loginField} onChange={(e) => [setSenha(e.target.value), setError('')]} required  /> <br/>
+
+                            <input id="cpf" type="text" placeholder="CPF"
+                            className={styles.loginField} onChange={(e) => [setCPF(e.target.value), setError('')]} required /> <br/>
+
+                            <input id="nusp" type="number" placeholder="Nº USP"
+                            className={styles.loginField} onChange={(e) => [setNusp(e.target.value), setError('')]} required /> <br/>
 
                             <button className={styles.btn} onClick={register}>Registrar</button><br/>
                         </form>
