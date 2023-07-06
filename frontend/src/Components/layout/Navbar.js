@@ -28,7 +28,6 @@ function Navbar() {
                     <NavLink to="/Login" className={styles.link}>Login</NavLink>
                 </li>
             </ul>
-        
         </nav>
     )
 }

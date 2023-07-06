@@ -39,7 +39,7 @@ const ReportPage = () => {
                     <div className={styles.reportInput1}>
                         <form>
                             <label>Email</label>
-                            <input type="text" placeholder="Ex.: fulano@email.com"
+                            <input type="email" placeholder="Ex.: fulano@email.com"
                             className={styles.reportField} onChange={(e) => [setEmail(e.target.value), setError('')]}
                             required /> <br/>
 
