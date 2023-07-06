@@ -1,3 +1,7 @@
+-- Criação do banco de dados e das tabelas
+
+
+-- Criação da tabela usuario
 create table usuario (
     email varchar(255),
     senha varchar(255) not null,
@@ -16,6 +20,7 @@ create table usuario (
     constraint ck_nusp check (nusp > 0)
 );
 
+-- Criação da tabela report
 create table report (
     numero serial,
     descricao varchar(300) not null,
@@ -28,6 +33,7 @@ create table report (
     constraint ck_situacao check (situacao >= 0 and situacao <= 2)
 );
 
+-- Criação da tabela arvore
 create table arvore (
     codigo serial,
     latitude numeric(10, 8) not null,
@@ -51,6 +57,7 @@ create table arvore (
     constraint ck_altura check (altura >= 0)
 );
 
+-- Criação da tabela condicoes_entorno
 create table condicoes_entorno (
     arvore integer,
     descricao varchar(100),
@@ -59,12 +66,14 @@ create table condicoes_entorno (
     foreign key (arvore) references arvore(codigo) on delete cascade
 );
 
+-- Criação da tabela imagem
 create table imagem (
     id serial primary key,
     nome varchar(255) not null,
     dados bytea not null
 );
 
+-- Criação da tabela imagem_arvore
 create table imagem_arvore (
     arvore integer,
     imagem integer,
@@ -74,6 +83,7 @@ create table imagem_arvore (
     foreign key (imagem) references imagem(id) on delete cascade
 );
 
+-- Criação da tabela tags
 create table tags (
     arvore integer,
     tag varchar(60),
@@ -82,6 +92,7 @@ create table tags (
     foreign key (arvore) references arvore(codigo) on delete cascade
 );
 
+-- Criação da tabela documento
 create table documento (
     id serial,
     nome varchar(255) not null,
@@ -90,6 +101,7 @@ create table documento (
     constraint pk_documento primary key (id)
 );
 
+-- Criação da tabela documento_arvore
 create table documento_arvore (
     arvore integer,
     documento integer,
@@ -99,6 +111,7 @@ create table documento_arvore (
     foreign key (documento) references documento(id) on delete cascade
 );
 
+-- Criação da tabela risco
 create table risco (
     id serial,
     descricao varchar(300) not null,
@@ -106,6 +119,7 @@ create table risco (
     constraint pk_risco primary key (id)
 );
 
+-- Criação da tabela arvore_risco
 create table arvore_risco (
     arvore integer,
     risco integer,
@@ -115,6 +129,7 @@ create table arvore_risco (
     foreign key (risco) references risco(id) on delete cascade
 );
 
+-- Criação da tabela arvore_historico_riscos
 create table arvore_historico_riscos (
     arvore integer,
     risco integer,

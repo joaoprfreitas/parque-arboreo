@@ -4,6 +4,8 @@ const express = require('express');
 const router = express.Router();
 const reportController = require('../controllers/report.controller');
 
+// Gerencia as rotas de reports
+
 // Cria um novo report
 router.post('/', reportController.createReport);
 

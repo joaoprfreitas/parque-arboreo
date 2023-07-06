@@ -22,11 +22,9 @@ app.use(function (req, res, next) {
     next();
 });
 
-// Permite que o body seja interpretado como json
+// Permite que o body seja interpretado como json, e que o tamanho máximo seja de 50mb
 app.use(bodyParser.json({ limit: '50mb'}));
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
-
-app.use('/upload', express.static('upload'));
 
 // Carrega as rotas
 app.use('/', index);

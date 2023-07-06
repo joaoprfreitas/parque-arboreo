@@ -76,6 +76,4 @@ router.delete('/:codigo', arvoreController.deleteArvore);
 router.put('/:codigo', arvoreController.updateArvore);
 
 
-
-
 module.exports = router;

@@ -11,6 +11,16 @@
 `cd backend/`\
 `npm install`
 
+### Variável ambiente
+Criar um arquivo `.env` na pasta `backend/` com o seguinte conteúdo:
+```
+DATABASE_URL="<Link_de_Conexão>"
+```
+No campo `<Link_de_Conexão>` deve ser inserido o link de conexão com o banco de dados.
+
+### Gerar tabelas no banco
+Execute todas as operações SQL presentes no arquivo `backend/sch.sql` no banco de dados.
+
 ### Iniciar cliente
 `cd backend/`\
 `npm start`
