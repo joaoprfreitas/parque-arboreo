@@ -18,7 +18,7 @@
 ### Rotas
 
 #### Árvores
-<!-- `GET /arvore` - Retorna todas as árvores cadastradas -->\
+`GET /arvore` - Retorna o código todas as árvores cadastradas\
 `GET /arvore/:codigo` - Retorna as informações da árvore que possui o código informado\
 `DELETE /arvore/:codigo` - Remove a árvore que possui o código informado\
 `POST /arvore` - Cadastra uma nova árvore\

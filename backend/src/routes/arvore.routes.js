@@ -63,6 +63,9 @@ router.get('/tag', tagController.getArvoresByTags);
 // Cadastrar uma nova árvore
 router.post('/', arvoreController.createArvore);
 
+// Buscar todas as árvores
+router.get('/', arvoreController.getArvores);
+
 // Buscar uma árvore pelo código
 router.get('/:codigo', arvoreController.getArvoreByCodigo);
 
@@ -71,8 +74,6 @@ router.delete('/:codigo', arvoreController.deleteArvore);
 
 // Atualizar uma árvore pelo código
 router.put('/:codigo', arvoreController.updateArvore);
-
-// Buscar todas as árvores
 
 
 

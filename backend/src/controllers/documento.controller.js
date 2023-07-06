@@ -6,22 +6,19 @@ exports.createDocumento = async (req, res) => {
     const { nome, dados } = req.body;
 
     try {
-        db.query(
+        const response = await db.query(
             'INSERT INTO documento (nome, dados) VALUES ($1, $2) RETURNING id',
-            [nome, dados],
-            (err, resp) => {
-
-                if (err) {
-                    throw new Error();
-                }
-                
-                res.status(201).send({
-                    message: 'Documento criado com sucesso',
-                    id: resp.rows[0].id
-                });
-            }
+            [nome, dados]
         );
-    
+        
+        if (response.rowCount == 0) {
+            throw new Error();
+        }
+
+        res.status(201).send({
+            message: 'Documento criado com sucesso',
+            id: response.rows[0].id
+        });
     } catch (err) {
         res.status(500).send({
             message: 'Erro ao criar documento'
@@ -52,7 +49,14 @@ exports.getDocumentoById = async (req, res) => {
 
 exports.getAllDocumentos = async (_, res) => {
     try {        
-        const response = await db.query('SELECT * FROM documento ORDER BY id DESC');
+        const response = await db.query('SELECT * FROM documento ORDER BY id ASC');
+
+        if (response.rows.length == 0) {
+            res.status(404).send({
+                message: 'Nenhum documento encontrado'
+            })
+            return;
+        }
     
         res.status(200).send(response.rows);
     } catch (err) {
@@ -74,7 +78,10 @@ exports.updateDocumento = async (req, res) => {
         );
 
         if (response.rowCount == 0) {
-            throw new Error();
+            res.status(404).send({
+                message: 'Documento não encontrado'
+            })
+            return;
         }
     
         res.status(200).send({
@@ -97,7 +104,10 @@ exports.deleteDocumento = async (req, res) => {
         );
 
         if (response.rowCount == 0) {
-            throw new Error();
+            res.status(404).send({
+                message: 'Documento não encontrado'
+            })
+            return;
         }
     
         res.status(200).send({
