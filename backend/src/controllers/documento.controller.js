@@ -43,13 +43,13 @@ exports.getDocumentoById = async (req, res) => {
     } catch (err) {
         res.status(404).send({
             message: 'Documento não encontrado'
-        })
+        });
     }  
 }
 
 exports.getAllDocumentos = async (_, res) => {
     try {        
-        const response = await db.query('SELECT * FROM documento ORDER BY id ASC');
+        const response = await db.query('SELECT id, nome FROM documento ORDER BY id ASC');
 
         if (response.rows.length == 0) {
             res.status(404).send({
@@ -62,9 +62,8 @@ exports.getAllDocumentos = async (_, res) => {
     } catch (err) {
         res.status(500).send({
             message: 'Erro ao buscar documentos'
-        })
+        });
     }
-
 }
 
 exports.updateDocumento = async (req, res) => {
@@ -73,7 +72,7 @@ exports.updateDocumento = async (req, res) => {
 
     try {
         const response = await db.query(
-            'UPDATE documento SET nome = $1, url = $2 WHERE id = $3',
+            'UPDATE documento SET nome = $1, dados = $2 WHERE id = $3',
             [nome, dados, id]
         );
 
