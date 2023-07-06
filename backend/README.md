@@ -30,6 +30,13 @@
 `POST /arvore/imagem` - Adiciona uma imagem cadastrada a uma árvore existente\
 `DELETE /arvore/imagem` - Remove uma imagem cadastrada de uma árvore existente\
 
+`POST /arvore/documento` - Adiciona um documento cadastrado a uma árvore existente\
+`DELETE /arvore/documento` - Remove um documento cadastrada de uma árvore existente\
+
+`POST /arvore/historico` - Adiciona um risco ao histórico de uma árvore\
+`DELETE /arvore/historico` - Remove um risco do histórica de uma árvore\
+`GET /arvore/historico` - Lista o histórico de uma árvore e/ou data\
+
 `POST /arvore/tag` - Adicionar uma tag a uma árvore\
 `DELETE /arvore/tag` - Remover uma tag de uma árvore\
 `GET /arvore/tag/:arvore` - Buscar todas as tags de uma árvore\
