@@ -20,14 +20,14 @@ const LoginPage = () => {
                 <div className={styles.loginBox}>
                     <img src={userIcon} alt="Icone de Login" className={styles.loginImg}/>
                     <div className={styles.loginInput}>
-                        <form>
+                        <form onSubmit={login}>
                             <input id="email" type="email" placeholder="Email"
                             className={styles.loginField} required /> <br/>
 
                             <input id="password" type="password" placeholder="Senha"
                             className={styles.loginField} required  /> <br/>
 
-                            <button className={styles.btn} onClick={login}>Login</button><br/>
+                            <input type='submit' value="Login" className={styles.btn} />
                         </form>
 
                         <p><b>Não possui conta?</b>&nbsp;

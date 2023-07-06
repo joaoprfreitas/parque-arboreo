@@ -18,7 +18,7 @@ const RegisterPage = () => {
 
     async function register(userEmail, userPassword, userName, userCPF, userNusp) {
         try {
-            const res = await axios.post('http://localhost:3500/usuaruio/', {
+            const res = await axios.post('http://localhost:3500/usuario/', {
                 email: userEmail,
                 senha: userPassword,
                 nome: userName,
@@ -33,6 +33,11 @@ const RegisterPage = () => {
         }
     }
 
+    const send = (e) => {
+        e.preventDefault();
+        register(email, senha, nome, cpf, nusp)
+    }
+
     return(
         <div> 
             <div className={styles.container}>
@@ -40,7 +45,7 @@ const RegisterPage = () => {
                 <div className={styles.loginBox}>
                     <img src={userIcon} alt="Icone de Login" className={styles.loginImg}/>
                     <div className={styles.loginInput}>
-                        <form>
+                        <form onSubmit={send}>
                             <input id="nome" type="text" placeholder="Nome Completo"
                             className={styles.loginField} onChange={(e) => [setNome(e.target.value), setError('')]} required /> <br/>
 
@@ -56,7 +61,7 @@ const RegisterPage = () => {
                             <input id="nusp" type="number" placeholder="Nº USP"
                             className={styles.loginField} onChange={(e) => [setNusp(e.target.value), setError('')]} required /> <br/>
 
-                            <button className={styles.btn} onClick={register}>Registrar</button><br/>
+                            <input type='submit' value="Registrar" className={styles.btn} />
                         </form>
                     </div>
                 </div>
