@@ -2,15 +2,18 @@
 
 const db = require('../config/database');
 
+// Adiciona um risco histórico de uma árvore em uma data específica
 exports.addRiscoHistoricoArvore = async (req, res) => {
     const { id_arvore, id_risco, data } = req.body;
     try {
+        // Insere os dados na tabela
         const response = await db.query(
             `INSERT INTO arvore_historico_riscos (arvore, risco, data)
             VALUES ($1, $2, TO_DATE($3, 'DD/MM/YYYY'))`,
             [id_arvore, id_risco, data]
         );
 
+        // Se não inserir nenhum dado, retorna erro
         if (response.rowCount == 0) {
             throw new Error();
         }
@@ -18,13 +21,14 @@ exports.addRiscoHistoricoArvore = async (req, res) => {
         res.status(200).send({
             message: 'Risco adicionado ao histórico da árvore com sucesso'
         });
-    } catch (error) {
+    } catch (error) { // Captura o erro
         res.status(500).send({
             message: 'Ocorreu um erro ao adicionar o risco ao histórico da árvore'
         });
     };
 };
 
+// Remove um risco histórico de uma árvore em uma data específica
 exports.removeRiscoHistoricoArvore = async (req, res) => {
     const { id_arvore, id_risco, data } = req.body;
     try {
@@ -48,9 +52,11 @@ exports.removeRiscoHistoricoArvore = async (req, res) => {
     };
 };
 
+// Obtem o histórico de uma ou mais árvores
 exports.getRiscoHistoricoArvore = async (req, res) => {
     const { id_arvore, data } = req.body;
     try {
+        // Se o id_arvore e data forem passados, retorna o histórico de uma árvore em uma data específica
         if (data !== undefined && id_arvore !== undefined) {
             const response = await db.query(
                 `SELECT r.descricao FROM arvore_historico_riscos ahr
@@ -70,6 +76,7 @@ exports.getRiscoHistoricoArvore = async (req, res) => {
             return;
         }
 
+        // Se a data não for passada, retorna o histórico de uma árvore
         if (data === undefined) {
             const response = await db.query(
                 `SELECT r.descricao, TO_CHAR(data, 'DD/MM/YYYY') AS data FROM arvore_historico_riscos ahr
@@ -89,6 +96,7 @@ exports.getRiscoHistoricoArvore = async (req, res) => {
             return;
         }
 
+        // Se o id_arvore não for passado, retorna o histórico de todas as árvores em uma data específica
         if (id_arvore === undefined) {
             const response = await db.query(
                 `SELECT arvore, r.descricao FROM arvore_historico_riscos ahr
