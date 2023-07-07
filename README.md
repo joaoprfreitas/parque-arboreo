@@ -9,7 +9,7 @@ O projeto foi elaborado por meio de um problema apresentado por um cliente. A pa
 | Gabriel Akio Urakawa | 11795912
 | Samuel Victorio Bernacci | 12703455
 | Matheus Vellosa de Andrade | 12421725
-| Jonathan Sanchez Minay | 11333691
+| Jonathan Sanchez Minaya | 11333691
 
 ## O que foi implementado até o momento
 - O projeto foi feito utilizando arquitetura MVC (Model, View, Controller).
@@ -87,6 +87,7 @@ Execute todas as operações SQL presentes no arquivo `backend/sch.sql` no banco
 `POST /arvore/historico` - Adiciona um risco ao histórico de uma árvore\
 `DELETE /arvore/historico` - Remove um risco do histórica de uma árvore\
 `GET /arvore/historico` - Lista o histórico de uma árvore e/ou data
+`GET /arvore/historico/:arvore` - Lista o histórico de uma árvore
 
 `POST /arvore/tag` - Adicionar uma tag a uma árvore\
 `DELETE /arvore/tag` - Remover uma tag de uma árvore\

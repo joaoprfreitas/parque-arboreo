@@ -32,8 +32,8 @@ const TreeInfo = () => {
         requestConfig: {}
     })
 
-    console.log(arvoreTags)
-    console.log(arvoreHistorico)
+    // console.log(arvoreTags)
+    // console.log(arvoreHistorico)
     console.log(arvore)
 
     return(
