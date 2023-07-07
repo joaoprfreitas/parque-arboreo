@@ -6,6 +6,19 @@
     height: 72px;
 }
 
-.info{
+.item{
+    padding-left: 10px;
     display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.info{
+    padding-left: 20px;
+}
+
+.codigo{
+    border-right: solid 2px gray;
+    padding-right: 10px;
+    padding-bottom: 0;
 }

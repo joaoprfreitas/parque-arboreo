@@ -4,10 +4,13 @@ import styles from './searchItem.module.css';
 const SearchItem = (item) =>{
     return(
         <div className={styles.container}>
-            {/* <img className="br-100 h3 w3 dib" alt={item.name} src={process.env.PUBLIC_URL + item.imgPath} /> */}
-            <div className={styles.info}>
-                <h2>{item.item.codigo}</h2>
-                <p>{item.item.especie} {item.item.familia}</p>
+            <div className={styles.item}>
+                <div className={styles.codigo}>
+                    <h2>ID: {item.item.codigo}</h2>
+                </div>
+                <div className={styles.descricao}>
+                    <h3>Espécie e Família: {item.item.especie} {item.item.familia}</h3>
+                </div>
             </div>
         </div>
     )
