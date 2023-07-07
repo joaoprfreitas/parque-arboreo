@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styles from './TreeInfo.module.css';
-import { useSearchParams, useNavigate } from 'react-router-dom';
+import { useSearchParams, useNavigate, Link } from 'react-router-dom';
 import logo from '../images/tree_logo.png'
 
 import useAxios from "../hooks/useAxios";
@@ -32,8 +32,8 @@ const TreeInfo = () => {
         requestConfig: {}
     })
 
-    console.log(arvoreTags)
-    console.log(arvoreHistorico)
+    // console.log(arvoreTags)
+    // console.log(arvoreHistorico)
     console.log(arvore)
 
     return(
@@ -43,7 +43,9 @@ const TreeInfo = () => {
                 <img className={styles.infoImg} src={logo} alt="Imagem Árvore"/>
             </div>
             <div>
-                <button className={styles.btn}> Report</button>
+                <Link to="/Report">
+                    <button className={styles.btn}> Report</button>
+                </Link>
             </div>
             <div className={styles.infoBox}>
                 <h1>Altura: </h1>
