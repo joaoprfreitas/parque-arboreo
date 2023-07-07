@@ -126,7 +126,7 @@ const HomePage = () => {
     }
 
     return (
-        <div id='teste'>
+        <div>
             <div className={styles.container}>
                 <div className={styles.title}>
                     <h1>Faça sua busca:</h1>
