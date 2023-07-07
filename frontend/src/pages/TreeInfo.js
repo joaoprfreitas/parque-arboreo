@@ -9,25 +9,31 @@ import axios from "../api/axiosInstance";
 const TreeInfo = () => {
     const [searchparams] = useSearchParams();
     const navigate = useNavigate();
-    let idRisco = searchparams.get("id");    
+    let idArvore = searchparams.get("id");    
 
-    const [risco, error, loading] = useAxios({
+    // const [risco, error, loading] = useAxios({
+    //     axiosInstance: axios,
+    //     method: 'GET',
+    //     url: 'http://localhost:3500/risco/' + idArvore,
+    //     requestConfig: {}
+    // })
+
+    const [arvore, error, loading] = useAxios({
         axiosInstance: axios,
         method: 'GET',
-        url: 'http://localhost:3500/risco/' + idRisco,
+        url: 'http://localhost:3500/arvore/' + idArvore,
         requestConfig: {}
     })
 
-    const [arvore, error2, loading2] = useAxios({
+    const [arvoreHistorico, error2, loading2] = useAxios({
         axiosInstance: axios,
         method: 'GET',
-        url: 'http://localhost:3500/arvore/' + idRisco,
+        url: 'http://localhost:3500/arvore/historico/' + idArvore,
         requestConfig: {}
     })
 
+    console.log(arvoreHistorico);
     console.log(arvore);
-    
-    // 
 
     return(
         <div className={styles.container}>
@@ -39,7 +45,7 @@ const TreeInfo = () => {
                 <button className={styles.btn}> Report</button>
             </div>
             <div className={styles.infoBox}>
-                <h1>Risco: {risco.descricao}</h1>
+                <h1>Risco: </h1>
             </div>
             <div className={styles.infoBox}>
                 <h1>Histórico: {}</h1>
