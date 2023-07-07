@@ -45,7 +45,8 @@ Execute todas as operações SQL presentes no arquivo `backend/sch.sql` no banco
 
 `POST /arvore/historico` - Adiciona um risco ao histórico de uma árvore\
 `DELETE /arvore/historico` - Remove um risco do histórica de uma árvore\
-`GET /arvore/historico` - Lista o histórico de uma árvore e/ou data
+`GET /arvore/historico` - Lista o histórico de uma árvore e/ou data\
+`GET /arvore/historico:arvore` - Lista o histórico de uma árvore e/ou data
 
 `POST /arvore/tag` - Adicionar uma tag a uma árvore\
 `DELETE /arvore/tag` - Remover uma tag de uma árvore\
