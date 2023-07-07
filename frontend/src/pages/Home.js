@@ -11,23 +11,16 @@ import axios from "../api/axiosInstance";
 
 const HomePage = () => {
     const navigate = useNavigate();
-
+    //uso do useState para armazenar informacoes dinamicas
     const [searchField, setSearchfield] = useState('')
     const [searchShow, setSearchShow] = useState(false); 
     const [dados, setDados] = useState('')
     const [error, setError] = useState('')
 
-    // const [arvoreDados, errorImages, loading] = useAxios({
-    //     axiosInstance: axios,
-    //     method: 'GET',
-    //     url: 'http://localhost:3500/arvore/' + searchField.toString(),
-    //     requestConfig: {}
-    // })
-
+    //requisicao de get para a arvore
     async function searchCodigo(codigo) {
         try{
             const dadosAr = await axios.get('http://localhost:3500/arvore/' + codigo.toString())
-            // console.log(dadosAr)
             setDados(dadosAr.data)
         }
         catch(e){
@@ -35,9 +28,8 @@ const HomePage = () => {
         }
     }
 
-    console.log(dados)
 
-    // dados temporarios ate requisicao estar pronta
+    //tramento dos dados da busca em relacao aos parametros
     const arvoreData = []
     if (dados != '') arvoreData.push(dados)
     const arvoresFiltrada = arvoreData.filter(
@@ -48,6 +40,7 @@ const HomePage = () => {
         }
     )
     
+    //tratamento de alterações no formulario de busca
     const handleChange = e => {
         setSearchfield(e.target.value);
         if (e.target.value === '') setSearchShow(false)
@@ -58,6 +51,7 @@ const HomePage = () => {
         setError('');
     }
     
+    // componente de dropdown para busca
     function searchList() {
         if (searchShow) {
             return (
@@ -66,9 +60,9 @@ const HomePage = () => {
         }
     }
 
+    //tratamento do evento de clicar no botao de busca
+    // redireciona a pagina de arvore especifica a busca
     const toSearch = () => {
-        
-
         navigate({
             pathname: '/TreeInfo',
             search: createSearchParams({

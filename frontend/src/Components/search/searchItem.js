@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './searchItem.module.css';
 
+// componente do dropdown para a busca com parametros
 const SearchItem = (item) =>{
     return(
         <div className={styles.container}>
