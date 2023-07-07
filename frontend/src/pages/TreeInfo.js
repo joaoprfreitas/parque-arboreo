@@ -33,7 +33,7 @@ const TreeInfo = () => {
     })
 
     // console.log(arvoreTags)
-    // console.log(arvoreHistorico)
+    console.log(arvoreHistorico)
     console.log(arvore)
 
     return(
@@ -47,14 +47,21 @@ const TreeInfo = () => {
                     <button className={styles.btn}> Report</button>
                 </Link>
             </div>
+            <label className={styles.label} >Informações: </label>
             <div className={styles.infoBox}>
-                <h1>Altura: </h1>
-                <h1>Risco: </h1>
-                <h1>Risco: </h1>
-                <h1>Risco: </h1>
+                <h1>Altura: {arvore.altura}</h1>
+                <h1>Espécie: {arvore.especie}</h1>
+                <h1>Família: {arvore.familia}</h1>
+                <h1>Nome Popular: {arvore.nome_popular}</h1>
+                <h1>Origem: {arvore.origem}</h1>
+                <h1>Altura da Primeira Ramificação: {arvore.altura_primeira_ramificacao}</h1>
+                <h1>Latitude: {arvore.latitude}</h1>
+                <h1>Longitude: {arvore.longitude}</h1>
             </div>
+            <label className={styles.label} >Histórico: </label>
             <div className={styles.infoBox}>
-                <h1>Histórico: {}</h1>
+                <h1>Risco: {arvoreHistorico.risco}</h1>
+                <h1>Data: {arvoreHistorico.data}</h1>
             </div>
         </div>
     );
