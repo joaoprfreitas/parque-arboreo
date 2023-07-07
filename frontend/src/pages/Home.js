@@ -11,86 +11,27 @@ import axios from "../api/axiosInstance";
 
 const HomePage = () => {
     const navigate = useNavigate();
-
+    //uso do useState para armazenar informacoes dinamicas
     const [searchField, setSearchfield] = useState('')
     const [searchShow, setSearchShow] = useState(false); 
+    const [dados, setDados] = useState('')
     const [error, setError] = useState('')
 
-    // const [images, errorImages, loading] = useAxios({
-    //     axiosInstance: axios,
-    //     method: 'GET',
-    //     url: 'http://localhost:3500/images/' + idRisco,
-    //     requestConfig: {}
-    // })
-
-    // dados temporarios ate requisicao estar pronta
-    const arvoreData = [
-        {
-            codigo: 1,
-            latitude: -90, 
-            longitude: -180, 
-            especie: "Teste", 
-            familia: "Testando", 
-            nome_popular: "Testador",
-            origem: "Nativa", 
-            dap: 0, 
-            dc: 0, 
-            altura_primeira_ramificacao: 0, 
-            altura: 0
-        },
-        {
-            codigo: 2,
-            latitude: 90, 
-            longitude: 180, 
-            especie: "Test", 
-            familia: "Testing", 
-            nome_popular: "Tester",
-            origem: "Exótica", 
-            dap: 1, 
-            dc: 1, 
-            altura_primeira_ramificacao: 0, 
-            altura: 0
-        },
-        {
-            codigo: 3,
-            latitude: 90, 
-            longitude: 180, 
-            especie: "Test", 
-            familia: "Testing", 
-            nome_popular: "Tester",
-            origem: "Exótica", 
-            dap: 1, 
-            dc: 1, 
-            altura_primeira_ramificacao: 0, 
-            altura: 0
-        },
-        {
-            codigo: 4,
-            latitude: 90, 
-            longitude: 180, 
-            especie: "Test", 
-            familia: "Testing", 
-            nome_popular: "Tester",
-            origem: "Exótica", 
-            dap: 1, 
-            dc: 1, 
-            altura_primeira_ramificacao: 0, 
-            altura: 0
-        },
-        {
-            codigo: 5,
-            latitude: 90, 
-            longitude: 180, 
-            especie: "Test", 
-            familia: "Testing", 
-            nome_popular: "Tester",
-            origem: "Exótica", 
-            dap: 1, 
-            dc: 1, 
-            altura_primeira_ramificacao: 0, 
-            altura: 0
+    //requisicao de get para a arvore
+    async function searchCodigo(codigo) {
+        try{
+            const dadosAr = await axios.get('http://localhost:3500/arvore/' + codigo.toString())
+            setDados(dadosAr.data)
         }
-    ]
+        catch(e){
+            console.log(e)
+        }
+    }
+
+
+    //tramento dos dados da busca em relacao aos parametros
+    const arvoreData = []
+    if (dados != '') arvoreData.push(dados)
     const arvoresFiltrada = arvoreData.filter(
         arvore => {
             return(
@@ -99,13 +40,18 @@ const HomePage = () => {
         }
     )
     
+    //tratamento de alterações no formulario de busca
     const handleChange = e => {
         setSearchfield(e.target.value);
         if (e.target.value === '') setSearchShow(false)
-        else setSearchShow(true)
+        else{
+            if (!isNaN(e.target.value)) searchCodigo(e.target.value)
+            setSearchShow(true)
+        } 
         setError('');
     }
     
+    // componente de dropdown para busca
     function searchList() {
         if (searchShow) {
             return (
@@ -114,9 +60,9 @@ const HomePage = () => {
         }
     }
 
+    //tratamento do evento de clicar no botao de busca
+    // redireciona a pagina de arvore especifica a busca
     const toSearch = () => {
-        
-
         navigate({
             pathname: '/TreeInfo',
             search: createSearchParams({
