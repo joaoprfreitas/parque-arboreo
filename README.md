@@ -9,7 +9,7 @@ O projeto foi elaborado por meio de um problema apresentado por um cliente. A pa
 | Gabriel Akio Urakawa | 11795912
 | Samuel Victorio Bernacci | 12703455
 | Matheus Vellosa de Andrade | 12421725
-| Jonathan Sanchez Minay | 11333691
+| Jonathan Sanchez Minaya | 11333691
 
 ## O que foi implementado até o momento
 - O projeto foi feito utilizando arquitetura MVC (Model, View, Controller).
