@@ -6,6 +6,7 @@ import { Routes, Route} from 'react-router-dom';
 
 //import components
 import Navbar from './Components/layout/Navbar';
+import Footer from './Components/layout/Footer';
 //import Footer from './Footer';
 
 //import pages
@@ -26,6 +27,7 @@ const App = () => {
                 <Route path='Register' element={<RegisterPage />} />
                 <Route path='TreeInfo' element={<TreeInfo />} />
             </Routes>
+            <Footer />
         </div>
     );
   };

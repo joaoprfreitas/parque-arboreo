@@ -18,6 +18,12 @@ const RegisterPage = () => {
 
     async function register(userEmail, userPassword, userName, userCPF, userNusp) {
         try {
+            console.log(userEmail);
+            console.log(userPassword);
+            console.log(userName);
+            console.log(userCPF);
+            console.log(userNusp);
+
             const res = await axios.post('http://localhost:3500/usuario/', {
                 email: userEmail,
                 senha: userPassword,
@@ -26,7 +32,6 @@ const RegisterPage = () => {
                 nusp: userNusp,
                 permissao: 0
             })
-
             navigate('/Login');
         } catch(e) {
             setError(e.response.data[0].message);
@@ -35,7 +40,7 @@ const RegisterPage = () => {
 
     const send = (e) => {
         e.preventDefault();
-        register(email, senha, nome, cpf, nusp)
+        register(email, senha, nome, cpf, nusp);
     }
 
     return(

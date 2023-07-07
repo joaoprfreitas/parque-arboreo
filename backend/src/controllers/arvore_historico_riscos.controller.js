@@ -52,6 +52,32 @@ exports.removeRiscoHistoricoArvore = async (req, res) => {
     };
 };
 
+exports.getRiscoHistoricoArvoreByID = async (req, res) => {
+    const id_arvore = parseInt(req.params.id_arvore);
+    console.log(id_arvore)
+    try {
+        const response = await db.query(
+            `SELECT r.descricao, TO_CHAR(data, 'DD/MM/YYYY') AS data FROM arvore_historico_riscos ahr
+            JOIN risco r ON ahr.risco = r.id
+            WHERE arvore = $1`,
+            [id_arvore]
+        )
+
+        if (response.rowCount == 0) {
+            res.status(404).send({
+                message: 'Histórico não encontrado'
+            });
+            return;
+        }
+
+        res.status(200).send(response.rows);
+    } catch (error) {
+        res.status(500).send({
+            message: 'Ocorreu um erro ao obter o histórico da árvore'
+        });
+    }
+}
+
 // Obtem o histórico de uma ou mais árvores
 exports.getRiscoHistoricoArvore = async (req, res) => {
     const { id_arvore, data } = req.body;

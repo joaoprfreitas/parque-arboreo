@@ -14,12 +14,10 @@ const ReportPage = () => {
     const [error, setError] = useState('');
 
     async function register(reportDescricao, reportLocalizacao, userEmail) {
-        console.log("teste");
-
         try {
-            console.log(reportDescricao + '. Localização: ' + reportLocalizacao);
-            console.log(new Date(Date.now()).toLocaleDateString());
-            console.log(userEmail);
+            // console.log(reportDescricao + '. Localização: ' + reportLocalizacao);
+            // console.log(new Date(Date.now()).toLocaleDateString());
+            // console.log(userEmail);
 
             const res = await axios.post('http://localhost:3500/report/', {
                 descricao: reportDescricao + '. Localização: ' + reportLocalizacao,

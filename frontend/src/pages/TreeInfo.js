@@ -9,23 +9,44 @@ import axios from "../api/axiosInstance";
 const TreeInfo = () => {
     const [searchparams] = useSearchParams();
     const navigate = useNavigate();
-    let idRisco = searchparams.get("id");    
+    let idArvore = searchparams.get("id");    
 
-    const [risco, error, loading] = useAxios({
+    const [arvore, error, loading] = useAxios({
         axiosInstance: axios,
         method: 'GET',
-        url: 'http://localhost:3500/risco/' + idRisco,
+        url: 'http://localhost:3500/arvore/' + idArvore,
         requestConfig: {}
     })
 
-    const [arvore, error2, loading2] = useAxios({
+    const [historicoArvore, error2, loading2] = useAxios({
         axiosInstance: axios,
         method: 'GET',
-        url: 'http://localhost:3500/arvore/' + idRisco,
+        url: 'http://localhost:3500/arvore/historico/' + idArvore,
         requestConfig: {}
     })
 
     console.log(arvore);
+
+    // const [risco, error, loading] = useAxios({
+    //     axiosInstance: axios,
+    //     method: 'GET',
+    //     url: 'http://localhost:3500/risco/' + idArvore,
+    //     requestConfig: {}
+    // })
+
+    // const [arvore, error2, loading2] = useAxios({
+    //     axiosInstance: axios,
+    //     method: 'GET',
+    //     url: 'http://localhost:3500/arvore/' + idArvore,
+    //     requestConfig: {}
+    // })
+
+    // async function getRisco(idArvore) {
+    //     const res =  axios.get('http://localhost:3500/risco/' + idArvore, {id: idArvore});
+    //     console.log(res);
+    //     return res;
+    // }
+    // console.log(arvore);
     
     // 
 
@@ -39,7 +60,7 @@ const TreeInfo = () => {
                 <button className={styles.btn}> Report</button>
             </div>
             <div className={styles.infoBox}>
-                <h1>Risco: {risco.descricao}</h1>
+                <h1>Risco: </h1>
             </div>
             <div className={styles.infoBox}>
                 <h1>Histórico: {}</h1>
