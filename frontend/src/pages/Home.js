@@ -14,83 +14,32 @@ const HomePage = () => {
 
     const [searchField, setSearchfield] = useState('')
     const [searchShow, setSearchShow] = useState(false); 
+    const [dados, setDados] = useState('')
     const [error, setError] = useState('')
 
-    // const [images, errorImages, loading] = useAxios({
+    // const [arvoreDados, errorImages, loading] = useAxios({
     //     axiosInstance: axios,
     //     method: 'GET',
-    //     url: 'http://localhost:3500/images/' + idRisco,
+    //     url: 'http://localhost:3500/arvore/' + searchField.toString(),
     //     requestConfig: {}
     // })
 
-    // dados temporarios ate requisicao estar pronta
-    const arvoreData = [
-        {
-            codigo: 1,
-            latitude: -90, 
-            longitude: -180, 
-            especie: "Teste", 
-            familia: "Testando", 
-            nome_popular: "Testador",
-            origem: "Nativa", 
-            dap: 0, 
-            dc: 0, 
-            altura_primeira_ramificacao: 0, 
-            altura: 0
-        },
-        {
-            codigo: 2,
-            latitude: 90, 
-            longitude: 180, 
-            especie: "Test", 
-            familia: "Testing", 
-            nome_popular: "Tester",
-            origem: "Exótica", 
-            dap: 1, 
-            dc: 1, 
-            altura_primeira_ramificacao: 0, 
-            altura: 0
-        },
-        {
-            codigo: 3,
-            latitude: 90, 
-            longitude: 180, 
-            especie: "Test", 
-            familia: "Testing", 
-            nome_popular: "Tester",
-            origem: "Exótica", 
-            dap: 1, 
-            dc: 1, 
-            altura_primeira_ramificacao: 0, 
-            altura: 0
-        },
-        {
-            codigo: 4,
-            latitude: 90, 
-            longitude: 180, 
-            especie: "Test", 
-            familia: "Testing", 
-            nome_popular: "Tester",
-            origem: "Exótica", 
-            dap: 1, 
-            dc: 1, 
-            altura_primeira_ramificacao: 0, 
-            altura: 0
-        },
-        {
-            codigo: 5,
-            latitude: 90, 
-            longitude: 180, 
-            especie: "Test", 
-            familia: "Testing", 
-            nome_popular: "Tester",
-            origem: "Exótica", 
-            dap: 1, 
-            dc: 1, 
-            altura_primeira_ramificacao: 0, 
-            altura: 0
+    async function searchCodigo(codigo) {
+        try{
+            const dadosAr = await axios.get('http://localhost:3500/arvore/' + codigo.toString())
+            // console.log(dadosAr)
+            setDados(dadosAr.data)
         }
-    ]
+        catch(e){
+            console.log(e)
+        }
+    }
+
+    console.log(dados)
+
+    // dados temporarios ate requisicao estar pronta
+    const arvoreData = []
+    if (dados != '') arvoreData.push(dados)
     const arvoresFiltrada = arvoreData.filter(
         arvore => {
             return(
@@ -102,7 +51,10 @@ const HomePage = () => {
     const handleChange = e => {
         setSearchfield(e.target.value);
         if (e.target.value === '') setSearchShow(false)
-        else setSearchShow(true)
+        else{
+            if (!isNaN(e.target.value)) searchCodigo(e.target.value)
+            setSearchShow(true)
+        } 
         setError('');
     }
     
