@@ -38,5 +38,3 @@ app.use('/risco', risco);
 app.use('/documento', documento);
 
 module.exports = app;
-
-

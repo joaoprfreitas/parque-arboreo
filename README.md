@@ -1,6 +1,6 @@
 # parque-arboreo
 Projeto de Engenharia de Software, em que o objetivo é criar um sistema para gerenciar o parque arbóreo da USP, permitindo que os usuários possam cadastrar, editar e remover árvores, além de adicionar riscos, imagens, tags e documentos a elas. Ainda, permite a gestão de usuários.\
-O projeto foi elaborado por meio de um problema apresentado por um cliente. A partir disto, foram feitas entrevistas e reuniões com a cliente para definir os requisitos do sistema e o escopo a ser abordado no projeto.\
+O projeto foi elaborado por meio de um problema apresentado por um cliente. A partir disto, foram feitas entrevistas e reuniões com a cliente para definir os requisitos do sistema e o escopo a ser abordado no projeto.
 
 ## Integrantes
 | Nome | Número USP
