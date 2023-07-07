@@ -35,7 +35,6 @@ router.delete('/documento', arvoreDocumentoController.unlinkArvoreDocumento);
 
 // <------Histórico da árvore------>
 
-router.get('/historico/:id_arvore', historicoArvoreController.getRiscoHistoricoArvoreByID);
 // Adicionar risco ao histórico de uma árvore
 router.post('/historico', historicoArvoreController.addRiscoHistoricoArvore);
 
@@ -45,6 +44,8 @@ router.delete('/historico', historicoArvoreController.removeRiscoHistoricoArvore
 // Listar o histórico de uma árvore e/ou de uma data
 router.get('/historico', historicoArvoreController.getRiscoHistoricoArvore);
 
+// Listar o histórico de uma árvore pelo ID
+router.get('/historico/:id_arvore', historicoArvoreController.getRiscoHistoricoArvoreByID);
 // <---------Tag árvore--------->
 
 // Adicionar uma tag a uma árvore

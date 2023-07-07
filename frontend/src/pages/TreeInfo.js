@@ -18,37 +18,23 @@ const TreeInfo = () => {
         requestConfig: {}
     })
 
-    const [historicoArvore, error2, loading2] = useAxios({
+    const [arvoreHistorico, error2, loading2] = useAxios({
         axiosInstance: axios,
         method: 'GET',
         url: 'http://localhost:3500/arvore/historico/' + idArvore,
         requestConfig: {}
     })
 
-    console.log(arvore);
+    const [arvoreTags, error3, loading3] = useAxios({
+        axiosInstance: axios,
+        method: 'GET',
+        url: 'http://localhost:3500/arvore/tag/' + idArvore,
+        requestConfig: {}
+    })
 
-    // const [risco, error, loading] = useAxios({
-    //     axiosInstance: axios,
-    //     method: 'GET',
-    //     url: 'http://localhost:3500/risco/' + idArvore,
-    //     requestConfig: {}
-    // })
-
-    // const [arvore, error2, loading2] = useAxios({
-    //     axiosInstance: axios,
-    //     method: 'GET',
-    //     url: 'http://localhost:3500/arvore/' + idArvore,
-    //     requestConfig: {}
-    // })
-
-    // async function getRisco(idArvore) {
-    //     const res =  axios.get('http://localhost:3500/risco/' + idArvore, {id: idArvore});
-    //     console.log(res);
-    //     return res;
-    // }
-    // console.log(arvore);
-    
-    // 
+    console.log(arvoreTags)
+    console.log(arvoreHistorico)
+    console.log(arvore)
 
     return(
         <div className={styles.container}>
@@ -60,7 +46,10 @@ const TreeInfo = () => {
                 <button className={styles.btn}> Report</button>
             </div>
             <div className={styles.infoBox}>
-                <h1>Risco: {}</h1>
+                <h1>Altura: </h1>
+                <h1>Risco: </h1>
+                <h1>Risco: </h1>
+                <h1>Risco: </h1>
             </div>
             <div className={styles.infoBox}>
                 <h1>Histórico: {}</h1>
