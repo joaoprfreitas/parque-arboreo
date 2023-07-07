@@ -30,6 +30,24 @@ O projeto foi elaborado por meio de um problema apresentado por um cliente. A pa
 - O protótipo do produto foi desenvolvido, utilizando o Figma.
 - Todas as rotas implementadas foram testadas utilizando o Postman e se comportaram conforme o esperado, evitando que erros pudessem crashar o backend.
 
+### No frontend
+
+#### Páginas
+Home \
+Login \
+Cadastre-se \
+Report \
+Informações da Árvore
+
+#### Componentes
+Header e Footer presentes em todas as páginas do site
+
+#### Funcionalidades
+Barra de pesquisa responsiva e integrada com o banco de dados \
+Cadastro de usuário no banco de dados \
+Cadastro de report no banco de dados \
+Página de informações da árvore com informações vindas do banco de dados
+
 
 
 ## Continuidade do projeto
@@ -38,6 +56,21 @@ O projeto foi elaborado por meio de um problema apresentado por um cliente. A pa
 - Gestão de compensação ambiental no backend.
 - Envio automático de emails para os usuários cadastrados.
 - Requisitos não funcionais: acessibilidade, compatibilidade (interdispositivos) e segurança não foram tratados.
+
+### No frontend
+#### Páginas
+Visualização de usuário \
+Gestão de report \
+Gestão de Árvores
+
+#### Componentes
+Todos os componente foram implementados
+
+#### Funcionalidades
+Validação de login \
+CUD (Create, Update, Remove) de uma árvore \
+CUD (Create, Update, Remove) de um usuário \
+Exibição do Histórico da árvore na página de informação da árvore
 
 
 ## Backend
@@ -144,37 +177,3 @@ Execute todas as operações SQL presentes no arquivo `backend/sch.sql` no banco
 
 ### Iniciar o servidor de desenvolvimento do frontend
 `npm start`
-
-### O que foi feito
-
-#### Páginas
-Home \
-Login \
-Cadastre-se \
-Report \
-Informações da Árvore
-
-#### Componentes
-Header e Footer presentes em todas as páginas do site
-
-#### Funcionalidades
-Barra de pesquisa responsiva e integrada com o banco de dados \
-Cadastro de usuário no banco de dados \
-Cadastro de report no banco de dados \
-Página de informações da árvore com informações vindas do banco de dados
-
-### O que falta ser feito
-
-#### Páginas
-Visualização de usuário \
-Gestão de report \
-Gestão de Árvores
-
-#### Componentes
-Todos os componente foram implementados
-
-#### Funcionalidades
-Validação de login \
-CUD (Create, Update, Remove) de uma árvore \
-CUD (Create, Update, Remove) de um usuário \
-Exibição do Histórico da árvore na página de informação da árvore
