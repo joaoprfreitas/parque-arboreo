@@ -54,7 +54,6 @@ exports.removeRiscoHistoricoArvore = async (req, res) => {
 
 exports.getRiscoHistoricoArvoreByID = async (req, res) => {
     const id_arvore = parseInt(req.params.id_arvore);
-    console.log(id_arvore)
     try {
         const response = await db.query(
             `SELECT r.descricao, TO_CHAR(data, 'DD/MM/YYYY') AS data FROM arvore_historico_riscos ahr

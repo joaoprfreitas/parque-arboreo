@@ -11,13 +11,6 @@ const TreeInfo = () => {
     const navigate = useNavigate();
     let idArvore = searchparams.get("id");    
 
-    // const [risco, error, loading] = useAxios({
-    //     axiosInstance: axios,
-    //     method: 'GET',
-    //     url: 'http://localhost:3500/risco/' + idArvore,
-    //     requestConfig: {}
-    // })
-
     const [arvore, error, loading] = useAxios({
         axiosInstance: axios,
         method: 'GET',
@@ -33,9 +26,6 @@ const TreeInfo = () => {
         requestConfig: {}
     })
 
-    console.log(arvoreHistorico);
-    console.log(arvore);
-
     return(
         <div className={styles.container}>
             <h1>Confira informações da árvore:</h1>
@@ -46,7 +36,6 @@ const TreeInfo = () => {
                 <button className={styles.btn}> Report</button>
             </div>
             <div className={styles.infoBox}>
-                <h1>Risco: </h1>
                 <h1>Risco: </h1>
             </div>
             <div className={styles.infoBox}>
