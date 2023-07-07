@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 
+// Biblioteca utilizada para realizar as requisições ao banco de dados
 const useAxios = (configObj) => {
     const {
         axiosInstance,

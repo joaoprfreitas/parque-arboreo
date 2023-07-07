@@ -7,16 +7,16 @@ import logo from '../../images/tree_logo.png';
 
 function Navbar() {    
     return (
-        /*
-        * Navbar do site
-        */
+        // Navbar do site
         <nav>
             <div>
+                {/* Imagem com link para a Home */}
                 <NavLink to="/"  >
                     <img className={styles.logo} src={logo} alt="Logo" width="150" />
                 </NavLink>
             </div>
 
+            {/* Lista de links para as páginas do site */}
             <ul className={styles.nav_list} >
                 <li className={styles.item}>
                     <NavLink to="/" className={styles.link}>Home</NavLink>

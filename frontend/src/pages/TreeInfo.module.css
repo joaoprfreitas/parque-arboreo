@@ -28,11 +28,12 @@
     height: 50px;
     padding: 10px 25px 10px 25px;
     margin-top: 25px;
-    margin-bottom: 25px;
+    margin-bottom: 45px;
     border: 2px solid green;
     border-radius: 5px;
     background-color: #fbfbfb;
     align-self: left;
+    font-weight: bold;
 }
 
 .container .btn:hover{
@@ -42,5 +43,8 @@
 }
 
 .label{
-    text-decoration: black;
+    text-transform: capitalize;
+    font-size: 4ch;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bolder;
 }
