@@ -131,3 +131,50 @@ Execute todas as operações SQL presentes no arquivo `backend/sch.sql` no banco
 `PUT /usuario/admin/:email` -  Atualiza cargo de usuario relativo ao email com novos dados
 
 ## Frontend
+### Setup
+
+#### Caso não possua o npm e/ou node instalado, execute:
+`curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash`\
+`nvm ls-remote`\
+`nvm install v18.16.1`
+
+#### Instalar os pacotes necessários
+`cd frontend/`\
+`npm install`
+
+### Iniciar o servidor de desenvolvimento do frontend
+`npm start`
+
+### O que foi feito
+
+#### Páginas
+Home \
+Login \
+Cadastre-se \
+Report \
+Informações da Árvore
+
+#### Componentes
+Header e Footer presentes em todas as páginas do site
+
+#### Funcionalidades
+Barra de pesquisa responsiva e integrada com o banco de dados \
+Cadastro de usuário no banco de dados \
+Cadastro de report no banco de dados \
+Página de informações da árvore com informações vindas do banco de dados
+
+### O que falta ser feito
+
+#### Páginas
+Visualização de usuário \
+Gestão de report \
+Gestão de Árvores
+
+#### Componentes
+Todos os componente foram implementados
+
+#### Funcionalidades
+Validação de login \
+CUD (Create, Update, Remove) de uma árvore \
+CUD (Create, Update, Remove) de um usuário \
+Exibição do Histórico da árvore na página de informação da árvore
