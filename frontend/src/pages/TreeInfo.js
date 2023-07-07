@@ -22,9 +22,17 @@ const TreeInfo = () => {
         axiosInstance: axios,
         method: 'GET',
         url: 'http://localhost:3500/arvore/historico/' + idArvore,
-        url: 'http://localhost:3500/arvore/historico/' + idArvore,
         requestConfig: {}
     })
+
+    const [arvoreTags, error3, loading3] = useAxios({
+        axiosInstance: axios,
+        method: 'GET',
+        url: 'http://localhost:3500/arvore/tag/' + idArvore,
+        requestConfig: {}
+    })
+
+
 
     return(
         <div className={styles.container}>
@@ -36,6 +44,9 @@ const TreeInfo = () => {
                 <button className={styles.btn}> Report</button>
             </div>
             <div className={styles.infoBox}>
+                <h1>Altura: </h1>
+                <h1>Risco: </h1>
+                <h1>Risco: </h1>
                 <h1>Risco: </h1>
             </div>
             <div className={styles.infoBox}>
