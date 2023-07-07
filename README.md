@@ -72,6 +72,9 @@ CUD (Create, Update, Remove) de uma árvore \
 CUD (Create, Update, Remove) de um usuário \
 Exibição do Histórico da árvore na página de informação da árvore
 
+## Testes das requisições
+Importar para o postman o arquivo `Projeto arbóreo.postman_collection.json` localizado no diretório raiz.\
+
 
 ## Backend
 ### Setup
