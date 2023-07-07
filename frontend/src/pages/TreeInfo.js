@@ -60,7 +60,7 @@ const TreeInfo = () => {
                 <button className={styles.btn}> Report</button>
             </div>
             <div className={styles.infoBox}>
-                <h1>Risco: </h1>
+                <h1>Risco: {}</h1>
             </div>
             <div className={styles.infoBox}>
                 <h1>Histórico: {}</h1>

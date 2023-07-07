@@ -7,7 +7,6 @@ import { Routes, Route} from 'react-router-dom';
 //import components
 import Navbar from './Components/layout/Navbar';
 import Footer from './Components/layout/Footer';
-//import Footer from './Footer';
 
 //import pages
 import Home from './pages/Home';
