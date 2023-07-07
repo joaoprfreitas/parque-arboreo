@@ -8,6 +8,7 @@ import axios from "../api/axiosInstance";
 
 const LoginPage = () => {
 
+    // Getters e Setters
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
     const [error, setError] = useState('');
@@ -35,6 +36,7 @@ const LoginPage = () => {
                 <div className={styles.loginBox}>
                     <img src={userIcon} alt="Icone de Login" className={styles.loginImg}/>
                     <div className={styles.loginInput}>
+                        {/* Formulário que chama os Setters através do event listener onChange */}
                         <form onSubmit={check}>
                             <input id="email" type="email" placeholder="Email"
                             className={styles.loginField} onChange={(e) => [setEmail(e.target.value), setError('')]} required /> <br/>

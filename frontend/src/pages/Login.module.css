@@ -53,6 +53,7 @@
     border: 2px solid green;
     border-radius: 5px;
     background-color: #fbfbfb;
+    font-weight: bold;
 }
 
 .loginInput .btn:hover{

@@ -11,6 +11,7 @@ const TreeInfo = () => {
     const navigate = useNavigate();
     let idArvore = searchparams.get("id");    
 
+    // Requisições ao banco de dados
     const [arvore, error, loading] = useAxios({
         axiosInstance: axios,
         method: 'GET',

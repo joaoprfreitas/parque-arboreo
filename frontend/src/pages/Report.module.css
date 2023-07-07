@@ -14,6 +14,7 @@
     border-radius: 5px;
     background-color: #fbfbfb;
     width: 200px;
+    font-weight: bold;
 }
 
 .container .btn:hover{

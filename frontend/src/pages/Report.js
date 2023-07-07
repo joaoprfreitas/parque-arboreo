@@ -7,12 +7,14 @@ import useAxios from "../hooks/useAxios";
 import axios from "../api/axiosInstance";
 
 const ReportPage = () => {
+    // Getters e Setters
     const navigate = useNavigate(); 
     const [email, setEmail] = useState('');
     const [localizacao, setLocalizacao] = useState('');
     const [descricao, setDescricao] = useState('');
     const [error, setError] = useState('');
 
+    // Função que faz a requisição POST para o banco de dados para cadastrar o novo report
     async function register(reportDescricao, reportLocalizacao, userEmail) {
         try {
             // console.log(reportDescricao + '. Localização: ' + reportLocalizacao);
@@ -31,6 +33,7 @@ const ReportPage = () => {
         }
     }
 
+    // Função para passar as variáveis para o escopo da função register
     const send = (e) => {
         e.preventDefault();
         register(descricao, localizacao, email)
@@ -41,6 +44,7 @@ const ReportPage = () => {
                 <h1>Reporte uma árvore em situação adversa:</h1>
                 <div className={styles.reportBox}>
                     <div className={styles.reportInput1}>
+                        {/* Formulário que chama os Setters através do event listener onChange */}
                         <form onSubmit={send}>
                             <label>Email</label>
                             <input type="email" placeholder="Ex.: fulano@email.com"
