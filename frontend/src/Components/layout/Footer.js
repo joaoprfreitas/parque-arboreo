@@ -1,21 +1,26 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { FaGithub } from 'react-icons/fa';
+import { FaGithub, FaInstagram, FaWhatsapp } from 'react-icons/fa'
 
-import styles from './Footer.module.css';
+import styles from './Footer.module.css'
 
-function Footer() {    
+function Footer() {
     return (
-        <div className={styles.footer}>
-            <ul className={styles.nav_list} >
-                <li className={styles.item}>
-                    <Link to="https://github.com/joaoprfreitas/parque-arboreo" className={styles.link}>
-                        <FaGithub/> GitHub
-                    </Link>
+        <footer className={styles.footer}>
+            <ul className={styles.social_list}>
+                <li onClick={() => window.open('https://github.com/joaoprfreitas/parque-arboreo', '_blank')}>
+                    <FaGithub/>
+                </li>
+                <li onClick={() => window.open('https://instagram.com', '_blank')}>
+                    <FaInstagram/>
+                </li>
+                <li onClick={() => window.open('https://whatsapp.com', '_blank')}>
+                    <FaWhatsapp/>
                 </li>
             </ul>
-        </div>
+            <p className={styles.copy_right}>
+                &copy;<span>Copyright. All rights reserved.</span>
+            </p>
+        </footer>
     )
 }
 
-export default Footer;
+export default Footer

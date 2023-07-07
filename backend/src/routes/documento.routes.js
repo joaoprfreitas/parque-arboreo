@@ -21,5 +21,4 @@ router.put('/:id', documentoController.updateDocumento);
 // Deletar um documento pelo id
 router.delete('/:id', documentoController.deleteDocumento);
 
-
 module.exports = router;
