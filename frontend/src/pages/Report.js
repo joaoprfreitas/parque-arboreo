@@ -15,20 +15,24 @@ const ReportPage = () => {
 
     async function register(reportDescricao, reportLocalizacao, userEmail) {
         try {
+            // console.log(reportDescricao + '. Localização: ' + reportLocalizacao);
+            // console.log(new Date(Date.now()).toLocaleDateString());
+            // console.log(userEmail);
+
             const res = await axios.post('http://localhost:3500/report/', {
                 descricao: reportDescricao + '. Localização: ' + reportLocalizacao,
                 data: new Date(Date.now()).toLocaleDateString(),
                 usuario: userEmail,
                 situacao: 0
             })
-
             navigate('/')
         } catch(e) {
             setError(e.response.data[0].message);
         }
     }
 
-    const send = () => {
+    const send = (e) => {
+        e.preventDefault();
         register(descricao, localizacao, email)
     }
     return(
@@ -37,7 +41,7 @@ const ReportPage = () => {
                 <h1>Reporte uma árvore em situação adversa:</h1>
                 <div className={styles.reportBox}>
                     <div className={styles.reportInput1}>
-                        <form>
+                        <form onSubmit={send}>
                             <label>Email</label>
                             <input type="email" placeholder="Ex.: fulano@email.com"
                             className={styles.reportField} onChange={(e) => [setEmail(e.target.value), setError('')]}
@@ -46,14 +50,14 @@ const ReportPage = () => {
                             <label>Localização</label>
                             <input type="text" placeholder="Ex.: Campus1:E1"
                             className={styles.reportField} onChange={(e) => [setLocalizacao(e.target.value), setError('')]}
-                            required  /> <br/>
+                            required /> <br/>
 
                             <label>Descrição</label>
                             <textarea type="text" placeholder="Escreva uma descrição breve sobre os problemas observados."
                             className={styles.reportDescription} onChange={(e) => [setDescricao(e.target.value), setError('')]}
                             required /> <br/>
 
-                            <button className={styles.btn} onClick={send}>Enviar</button><br/>
+                            <input type='submit' value="Enviar" className={styles.btn} />
                         </form>
                     </div>
                 </div>

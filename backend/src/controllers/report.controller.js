@@ -7,12 +7,14 @@ exports.createReport = async (req, res) => {
     // Extrai os dados do corpo da requisição
     const {descricao, data, usuario} = req.body;
 
+    // TODO: decidir como lidar com usuario não cadastrado que reporta uma árvore
+
     try {
         // Insere os dados no banco de dados
         const response = await db.query(
             `INSERT INTO report (descricao, data, usuario, situacao)
             VALUES ($1, TO_DATE($2, 'DD/MM/YYYY'), $3, 0)`,
-            [descricao, data, usuario],
+            [descricao, data, null],
         );
 
         // Se nenhum dado foi inserido, lança um erro

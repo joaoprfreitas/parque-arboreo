@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styles from './TreeInfo.module.css';
 import { useSearchParams, useNavigate } from 'react-router-dom';
+import logo from '../images/tree_logo.png'
 
 import useAxios from "../hooks/useAxios";
 import axios from "../api/axiosInstance";
@@ -8,26 +9,48 @@ import axios from "../api/axiosInstance";
 const TreeInfo = () => {
     const [searchparams] = useSearchParams();
     const navigate = useNavigate();
-    let idRisco = searchparams.get("id");    
+    let idArvore = searchparams.get("id");    
 
-    const [risco, error, loading] = useAxios({
+    const [arvore, error, loading] = useAxios({
         axiosInstance: axios,
         method: 'GET',
-        url: 'http://localhost:3500/risco/' + idRisco,
+        url: 'http://localhost:3500/arvore/' + idArvore,
         requestConfig: {}
     })
-    
-    console.log(risco.descricao);
+
+    const [arvoreHistorico, error2, loading2] = useAxios({
+        axiosInstance: axios,
+        method: 'GET',
+        url: 'http://localhost:3500/arvore/historico/' + idArvore,
+        requestConfig: {}
+    })
+
+    const [arvoreTags, error3, loading3] = useAxios({
+        axiosInstance: axios,
+        method: 'GET',
+        url: 'http://localhost:3500/arvore/tag/' + idArvore,
+        requestConfig: {}
+    })
+
+
 
     return(
-        <div> 
-            <div className={styles.container}>
-                <h1>Confira informações da árvore:</h1>
-                <div className={styles.infoBox}>
-                    <div className={styles.infoInput}>
-                        <h1>Risco: {risco.descricao}</h1>
-                    </div>
-                </div>
+        <div className={styles.container}>
+            <h1>Confira informações da árvore:</h1>
+            <div>
+                <img className={styles.infoImg} src={logo} alt="Imagem Árvore"/>
+            </div>
+            <div>
+                <button className={styles.btn}> Report</button>
+            </div>
+            <div className={styles.infoBox}>
+                <h1>Altura: </h1>
+                <h1>Risco: </h1>
+                <h1>Risco: </h1>
+                <h1>Risco: </h1>
+            </div>
+            <div className={styles.infoBox}>
+                <h1>Histórico: {}</h1>
             </div>
         </div>
     );

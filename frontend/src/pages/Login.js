@@ -1,9 +1,16 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styles from './Login.module.css';
 import userIcon from '../images/login.png';
-import { useNavigate } from 'react-router-dom';
+import { useSearchParams, useNavigate } from 'react-router-dom';
+
+import useAxios from "../hooks/useAxios";
+import axios from "../api/axiosInstance";
 
 const LoginPage = () => {
+
+    const [email, setEmail] = useState('');
+    const [senha, setSenha] = useState('');
+    const [error, setError] = useState('');
     
     const navigate = useNavigate();
     const register = () => {
@@ -13,6 +20,14 @@ const LoginPage = () => {
         navigate('/');
     }
 
+    async function check(userEmail, userPassword){
+    }
+
+    const send = (e) => {
+        e.preventDefault();
+        check(email, senha);
+    }
+
     return(
         <div> 
             <div className={styles.container}>
@@ -20,14 +35,14 @@ const LoginPage = () => {
                 <div className={styles.loginBox}>
                     <img src={userIcon} alt="Icone de Login" className={styles.loginImg}/>
                     <div className={styles.loginInput}>
-                        <form>
+                        <form onSubmit={check}>
                             <input id="email" type="email" placeholder="Email"
-                            className={styles.loginField} required /> <br/>
+                            className={styles.loginField} onChange={(e) => [setEmail(e.target.value), setError('')]} required /> <br/>
 
                             <input id="password" type="password" placeholder="Senha"
-                            className={styles.loginField} required  /> <br/>
+                            className={styles.loginField} onChange={(e) => [setSenha(e.target.value), setError('')]} required  /> <br/>
 
-                            <button className={styles.btn} onClick={login}>Login</button><br/>
+                            <input type='submit' value="Login" className={styles.btn} />
                         </form>
 
                         <p><b>Não possui conta?</b>&nbsp;
